@@ -12,7 +12,7 @@ const ProjectSchema = new mongoose.Schema({
     issues: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Issue',
-    }]
+    }],
 },
     { timestamps: true }
 );

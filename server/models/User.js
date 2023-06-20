@@ -14,7 +14,6 @@ const UserSchema = new mongoose.Schema({
         ref: 'Project',
     }],
 
-
 },
     { timestamps: true }
 );
