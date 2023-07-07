@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 const ProjectSchema = new mongoose.Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true,
     },
     title: {
         type: String,
