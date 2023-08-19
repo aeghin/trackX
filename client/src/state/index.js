@@ -4,11 +4,11 @@ const initialState = {
     user: null,
     token: null,
     projects: [],
-    issues: [],
+    issues: {},
 };
 
-export const authSlice = createSlice({
-    name: "auth",
+export const globalSlice = createSlice({
+    name: "global",
     initialState,
     reducers: {
         setLogin: (state, action) => {
@@ -19,15 +19,23 @@ export const authSlice = createSlice({
             state.user = null;
             state.token = null;
         },
-        setProjects: (state, action) => {
-            state.projects = action.payload.projects;
+        addIssue: (state, action) => {
+            const { projectId, issue } = action.payload;
+            if (!state.issues[projectId]) {
+                state.issues[projectId] = [];
+            }
+            state.issues[projectId].push(issue);
         },
-        setIssues: (state, action) => {
-            state.issues = action.payload.issues;
+        deleteIssue: (state, action) => {
+            const { projectId, issueId } = action.payload;
+            if (state.issues[projectId]) {
+                state.issues[projectId] = state.issues[projectId].filter(issue => issue.id !== issueId);
+            }
         }
+
     }
 });
 
-export const { setLogin, setLogout, setProjects, setIssues } = authSlice.actions;
+export const { setLogin, setLogout, setProjects, setIssues } = globalSlice.actions;
 
-export default authSlice.reducer;
+export default globalSlice.reducer;
