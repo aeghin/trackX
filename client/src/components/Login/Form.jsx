@@ -35,27 +35,60 @@ const Form = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isLogin = pageType === 'login';
-    const isRegiater = pageType === 'register';
+    const isRegister = pageType === 'register';
 
 
 
     return (
         <Formik onSubmit={} >
             {({
-        values,
-        errors,
-        touched,
-        handleBlur,
-        handleChange,
-        handleSubmit,
-        setFieldValue,
-        resetForm,
-      }) => (
-        <form>
-            
-        </form>
+                values,
+                errors,
+                touched,
+                handleBlur,
+                handleChange,
+                handleSubmit,
+                setFieldValue,
+                resetForm,
+            }) => (
+                <form onSubmit={} >
+                    {isRegister && (
+                        <>
+                            <input
+                                type='text'
+                                placeholder='email...'
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                name='email'
+                                values={values.email}
+                                error={Boolean(touched.email) && Boolean(errors.email)}
+                                helperText={touched.email && errors.email}
+                            />
+                            <input
+                                type='text'
+                                placeholder='email...'
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                name='email'
+                                values={values.email}
+                                error={Boolean(touched.email) && Boolean(errors.email)}
+                                helperText={touched.email && errors.email}
+                            />
+                            <input
+                                type='text'
+                                placeholder='email...'
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                name='email'
+                                values={values.email}
+                                error={Boolean(touched.email) && Boolean(errors.email)}
+                                helperText={touched.email && errors.email}
+                            />
+                        </>
+                    )}
+                </form>
 
-        )}
+            )}
         </Formik>
     )
 };
