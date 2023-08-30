@@ -30,10 +30,10 @@ export const globalSlice = createSlice({
             const { projectId, issueId } = action.payload;
             if (state.issues[projectId]) {
                 state.issues[projectId] = state.issues[projectId].filter(issue => issue.id !== issueId);
-            }
-        }
+            };
+        },
 
-    }
+    },
 });
 
 export const { setLogin, setLogout, setProjects, setIssues } = globalSlice.actions;

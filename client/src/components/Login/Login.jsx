@@ -1,8 +1,8 @@
-
+import Form from "./Form.jsx";
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <Form />
   )
 }
 
