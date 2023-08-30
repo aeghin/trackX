@@ -12,7 +12,7 @@ const loginSchema = yup.object().shape({
 });
 
 const registerSchema = yup.object().shape({
-    displayName: yup.string().max(6).required('required'),
+    username: yup.string().max(6).required('required'),
     email: yup.string().email('invalid email!').required('required!'),
     password: yup.string().required('required!'),
 });
@@ -23,7 +23,7 @@ const initialLoginValues = {
 };
 
 const initialRegisterValues = {
-    displayName: '',
+    username: '',
     email: '',
     password: '',
 };
@@ -37,10 +37,27 @@ const Form = () => {
     const isLogin = pageType === 'login';
     const isRegister = pageType === 'register';
 
+    const register = async (values, onSubmitProps) => {
+
+        const userResponse = await fetch(
+            'http://localhost:3001/auth/register',
+            {
+                method: 'POST',
+                body: JSON.stringify(values),
+            }
+        );
+
+        const savedUser = await userResponse.json();
+        onSubmitProps.resetForm();
+
+        if (savedUser) {
+            setPageType('login')
+        };
+    };
 
 
     return (
-        <Formik onSubmit={} >
+        <Formik onSubmit={ } >
             {({
                 values,
                 errors,
@@ -48,44 +65,56 @@ const Form = () => {
                 handleBlur,
                 handleChange,
                 handleSubmit,
-                setFieldValue,
                 resetForm,
             }) => (
-                <form onSubmit={} >
+                <form onSubmit={handleSubmit} >
                     {isRegister && (
                         <>
                             <input
                                 type='text'
-                                placeholder='email...'
+                                placeholder='username...'
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                name='email'
-                                values={values.email}
-                                error={Boolean(touched.email) && Boolean(errors.email)}
-                                helperText={touched.email && errors.email}
-                            />
-                            <input
-                                type='text'
-                                placeholder='email...'
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                name='email'
-                                values={values.email}
-                                error={Boolean(touched.email) && Boolean(errors.email)}
-                                helperText={touched.email && errors.email}
-                            />
-                            <input
-                                type='text'
-                                placeholder='email...'
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                name='email'
-                                values={values.email}
-                                error={Boolean(touched.email) && Boolean(errors.email)}
-                                helperText={touched.email && errors.email}
+                                name='username'
+                                values={values.username}
+                                error={Boolean(touched.username) && Boolean(errors.username)}
+                                helperText={touched.username && errors.username}
                             />
                         </>
                     )}
+                    <input
+                        type='email'
+                        placeholder='email...'
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        name='email'
+                        values={values.email}
+                        error={Boolean(touched.email) && Boolean(errors.email)}
+                        helperText={touched.email && errors.email}
+                    />
+                    <input
+                        type='password'
+                        placeholder='password...'
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        name='password'
+                        values={values.password}
+                        error={Boolean(touched.password) && Boolean(errors.password)}
+                        helperText={touched.password && errors.password}
+                    />
+
+                    {/* Button */}
+
+                    <button type='submit'>
+                        {isLogin ? 'LOGIN' : 'REGISTER'}
+                    </button>
+                    <p onClick={() => {
+                        setPageType(isLogin ? 'register' : 'login');
+                        resetForm();
+                    }}>
+                        {isLogin ? "Don't have an account? Register here!" : "Already have an account? Login here!"}
+                    </p>
+
                 </form>
 
             )}
