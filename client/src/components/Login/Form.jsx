@@ -44,17 +44,18 @@ const Form = () => {
                 'http://localhost:3001/auth/register',
                 {
                     method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(values),
                 }
             );
-    
+
             if (!userResponse.ok) {
                 throw new Error(`Registration failed with status: ${userResponse.status}`);
             }
-    
+
             const savedUser = await userResponse.json();
             onSubmitProps.resetForm();
-    
+
             if (savedUser) {
                 setPageType('login');
             }
@@ -62,7 +63,7 @@ const Form = () => {
             console.error('Error during registration:', error);
         }
     };
-    
+
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch('http://localhost:3001/auth/login',
@@ -116,7 +117,7 @@ const Form = () => {
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                                 name='username'
-                                values={values.username}
+                                value={values.username}
                                 error={Boolean(touched.username) && Boolean(errors.username)}
                                 helperText={touched.username && errors.username}
                             />
@@ -128,7 +129,7 @@ const Form = () => {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         name='email'
-                        values={values.email}
+                        value={values.email}
                         error={Boolean(touched.email) && Boolean(errors.email)}
                         helperText={touched.email && errors.email}
                     />
@@ -138,7 +139,7 @@ const Form = () => {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         name='password'
-                        values={values.password}
+                        value={values.password}
                         error={Boolean(touched.password) && Boolean(errors.password)}
                         helperText={touched.password && errors.password}
                     />
