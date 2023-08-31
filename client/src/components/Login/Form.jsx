@@ -38,22 +38,30 @@ const Form = () => {
     const isRegister = pageType === 'register';
 
     const register = async (values, onSubmitProps) => {
-
-        const userResponse = await fetch(
-            'http://localhost:3001/auth/register',
-            {
-                method: 'POST',
-                body: JSON.stringify(values),
+        try {
+            const userResponse = await fetch(
+                'http://localhost:3001/auth/register',
+                {
+                    method: 'POST',
+                    body: JSON.stringify(values),
+                }
+            );
+    
+            if (!userResponse.ok) {
+                throw new Error(`Registration failed with status: ${userResponse.status}`);
             }
-        );
-
-        const savedUser = await userResponse.json();
-        onSubmitProps.resetForm();
-
-        if (savedUser) {
-            setPageType('login')
-        };
+    
+            const savedUser = await userResponse.json();
+            onSubmitProps.resetForm();
+    
+            if (savedUser) {
+                setPageType('login');
+            }
+        } catch (error) {
+            console.error('Error during registration:', error);
+        }
     };
+    
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch('http://localhost:3001/auth/login',
@@ -63,7 +71,7 @@ const Form = () => {
                 body: JSON.stringify(values),
             });
 
-        const loggedIn = loggedInResponse.json();
+        const loggedIn = await loggedInResponse.json();
 
         onSubmitProps.resetForm();
 
