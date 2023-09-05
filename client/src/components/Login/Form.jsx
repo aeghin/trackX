@@ -124,6 +124,7 @@ const Form = () => {
                         </>
                     )}
                     <input
+                        className=""
                         type='email'
                         placeholder='email...'
                         onBlur={handleBlur}
