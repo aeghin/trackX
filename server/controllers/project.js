@@ -9,7 +9,12 @@ export const createProject = async (req, res) => {
         // destructuring request body to get user and title of project.
         const { user_id, title } = req.body;
         // getting the user - not sure i need it
-        // const user = User.findById(user_id);
+
+
+        const userExists = await User.findById(user_id);
+        if (!userExists) {
+            return res.status(400).json({ message: "User not found" });
+        };
 
         //creating the new Project
         const newProject = new Project({
@@ -29,4 +34,41 @@ export const createProject = async (req, res) => {
     } catch (err) {
         res.status(409).json({ message: err.message });
     }
+};
+
+
+export const createIssue = async (req, res) => {
+
+    try {
+        const { title, description, created_by, status, due_date, project_id } = req.body;
+
+        // Validate project existence
+        const project = await Project.findById(project_id);
+        if (!project) {
+            return res.status(400).json({ message: 'Project not found' });
+        }
+
+        // Create a new issue
+        const newIssue = new Issue({
+            title,
+            description,
+            created_by,
+            status,
+            due_date
+        });
+
+        // Save the issue
+        await newIssue.save();
+
+        // Update the project with this new issue
+        project.issues.push(newIssue._id);
+        await project.save();
+
+        // Send a response
+        res.status(201).json(newIssue);
+    }
+    catch (err) {
+        res.status(409).json({ message: err.message });
+    }
+
 };
