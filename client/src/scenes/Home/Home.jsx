@@ -10,8 +10,8 @@ const Home = () => {
 
     return (
         <>
-            <div className="text-red-500">Home page</div>
-            <button onClick={loginPage}>LOGIN</button>
+            <div className='text-gray-800'>Home page</div>
+            <button className='text-red-800'onClick={loginPage}>LOGIN</button>
         </>
     )
 };

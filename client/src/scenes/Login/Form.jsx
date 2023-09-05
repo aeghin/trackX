@@ -6,6 +6,13 @@ import { useDispatch } from 'react-redux';
 import { setLogin } from 'state';
 
 
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+
+import { Mail } from 'lucide-react';
+
+
 
 const loginSchema = yup.object().shape({
     email: yup.string().email('invalid email!').required('required!'),
@@ -111,7 +118,7 @@ const Form = () => {
                 <form onSubmit={handleSubmit} >
                     {isRegister && (
                         <>
-                            <input
+                            <Input className='my-1 ml-4'
                                 type='text'
                                 placeholder='username...'
                                 onBlur={handleBlur}
@@ -123,8 +130,8 @@ const Form = () => {
                             />
                         </>
                     )}
-                    <input
-                        className=""
+                    <Input
+                        className='my-1 ml-4'
                         type='email'
                         placeholder='email...'
                         onBlur={handleBlur}
@@ -134,7 +141,8 @@ const Form = () => {
                         error={Boolean(touched.email) && Boolean(errors.email)}
                         helperText={touched.email && errors.email}
                     />
-                    <input
+                    <Input
+                        className='my-1 ml-4'
                         type='password'
                         placeholder='password...'
                         onBlur={handleBlur}
@@ -147,14 +155,17 @@ const Form = () => {
 
                     {/* Button */}
 
-                    <button type='submit'>
+                    <Button size='sm' className='ml-4' type='submit'>
+                    <Mail className="mr-2 h-4 w-4" />
                         {isLogin ? 'LOGIN' : 'REGISTER'}
-                    </button>
+                    </Button>
                     <p onClick={() => {
                         setPageType(isLogin ? 'register' : 'login');
                         resetForm();
                     }}>
+                        <Button variant='link'>
                         {isLogin ? "Don't have an account? Register here!" : "Already have an account? Login here!"}
+                        </Button>
                     </p>
 
                 </form>

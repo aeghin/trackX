@@ -1,6 +1,7 @@
-import Form from "./Form.jsx";
+import Form from "./Form";
 
 const Login = () => {
+  
   return (
     <Form />
   )

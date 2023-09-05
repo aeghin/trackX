@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/Home/Home.jsx';
-import Login from './components/Login/Login.jsx'
-import Dashboard from './components/Dashboard/Dashboard.jsx';
+import Home from './scenes/Home/Home';
+import Login from './scenes/Login/Login'
+import Dashboard from './scenes/Dashboard/Dashboard';
 import { useSelector } from 'react-redux';
 
 
