@@ -10,7 +10,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 
-import { Mail } from 'lucide-react';
+// import { Mail, LogIn } from 'lucide-react';
+
 
 
 
@@ -108,8 +109,8 @@ const Form = () => {
         >
             {({
                 values,
-                errors,
-                touched,
+                // errors,
+                // touched,
                 handleBlur,
                 handleChange,
                 handleSubmit,
@@ -120,56 +121,52 @@ const Form = () => {
                         <>
                             <Input className='my-1 ml-4'
                                 type='text'
-                                placeholder='username...'
+                                placeholder='username'
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                                 name='username'
                                 value={values.username}
-                                error={Boolean(touched.username) && Boolean(errors.username)}
-                                helperText={touched.username && errors.username}
+                            // error={Boolean(touched.username) && Boolean(errors.username)}
+                            // helperText={touched.username && errors.username}
                             />
                         </>
                     )}
                     <Input
                         className='my-1 ml-4'
                         type='email'
-                        placeholder='email...'
+                        placeholder='email'
                         onBlur={handleBlur}
                         onChange={handleChange}
                         name='email'
                         value={values.email}
-                        error={Boolean(touched.email) && Boolean(errors.email)}
-                        helperText={touched.email && errors.email}
+                    // error={Boolean(touched.email) && Boolean(errors.email)}
+                    // helperText={touched.email && errors.email}
                     />
                     <Input
                         className='my-1 ml-4'
                         type='password'
-                        placeholder='password...'
+                        placeholder='password'
                         onBlur={handleBlur}
                         onChange={handleChange}
                         name='password'
                         value={values.password}
-                        error={Boolean(touched.password) && Boolean(errors.password)}
-                        helperText={touched.password && errors.password}
+                    // error={Boolean(touched.password) && Boolean(errors.password)}
+                    // helperText={touched.password && errors.password}
                     />
 
                     {/* Button */}
 
-                    <Button size='sm' className='ml-4' type='submit'>
-                    <Mail className="mr-2 h-4 w-4" />
+                    <Button variant='default' size='sm' className='ml-4' type='submit'>
                         {isLogin ? 'LOGIN' : 'REGISTER'}
                     </Button>
-                    <p onClick={() => {
+
+                    <Button variant='link' size='sm' onClick={() => {
                         setPageType(isLogin ? 'register' : 'login');
                         resetForm();
                     }}>
-                        <Button variant='link'>
                         {isLogin ? "Don't have an account? Register here!" : "Already have an account? Login here!"}
-                        </Button>
-                    </p>
-
+                    </Button>
                 </form>
-
             )}
         </Formik>
     );
