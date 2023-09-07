@@ -1,8 +1,9 @@
-
+import Navbar from "scenes/Navbar/Navbar"
 
 const Dashboard = () => {
   return (
-    <div>Dashboard only if logged in</div>
+    <Navbar />
+    // <div>Dashboard only if logged in</div>
   )
 }
 

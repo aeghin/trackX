@@ -1,9 +1,12 @@
 import Form from "./Form";
-
+import Navbar from "scenes/Navbar/Navbar";
 const Login = () => {
-  
+
   return (
-    <Form />
+    <>
+      <Navbar />
+      <Form />
+    </>
   )
 }
 

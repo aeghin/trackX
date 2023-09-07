@@ -6,8 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setLogin } from 'state';
 
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+
 
 
 // import { Mail, LogIn } from 'lucide-react';
@@ -116,57 +115,60 @@ const Form = () => {
                 handleSubmit,
                 resetForm,
             }) => (
-                <form onSubmit={handleSubmit} >
-                    {isRegister && (
-                        <>
-                            <Input className='my-1 ml-4'
-                                type='text'
-                                placeholder='username'
+                <div className="bg-gray-200 min-h-screen flex justify-center items-center">
+                    <form onSubmit={handleSubmit} className="bg-white p-12 rounded-lg shadow-md w-full md:w-1/2 lg:w-1/3">
+                        {isRegister && (
+                            <div className="mb-6">
+                                <input
+                                    className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none"
+                                    type="text"
+                                    placeholder="Username"
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    name="username"
+                                    value={values.username}
+                                />
+                            </div>
+                        )}
+                        <div className="mb-6">
+                            <input
+                                className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none"
+                                type="email"
+                                placeholder="Email"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                name='username'
-                                value={values.username}
-                            // error={Boolean(touched.username) && Boolean(errors.username)}
-                            // helperText={touched.username && errors.username}
+                                name="email"
+                                value={values.email}
                             />
-                        </>
-                    )}
-                    <Input
-                        className='my-1 ml-4'
-                        type='email'
-                        placeholder='email'
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        name='email'
-                        value={values.email}
-                    // error={Boolean(touched.email) && Boolean(errors.email)}
-                    // helperText={touched.email && errors.email}
-                    />
-                    <Input
-                        className='my-1 ml-4'
-                        type='password'
-                        placeholder='password'
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        name='password'
-                        value={values.password}
-                    // error={Boolean(touched.password) && Boolean(errors.password)}
-                    // helperText={touched.password && errors.password}
-                    />
-
-                    {/* Button */}
-
-                    <Button variant='default' size='sm' className='ml-4' type='submit'>
-                        {isLogin ? 'LOGIN' : 'REGISTER'}
-                    </Button>
-
-                    <Button variant='link' size='sm' onClick={() => {
-                        setPageType(isLogin ? 'register' : 'login');
-                        resetForm();
-                    }}>
-                        {isLogin ? "Don't have an account? Register here!" : "Already have an account? Login here!"}
-                    </Button>
-                </form>
+                        </div>
+                        <div className="mb-6">
+                            <input
+                                className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none"
+                                type="password"
+                                placeholder="Password"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                name="password"
+                                value={values.password}
+                            />
+                        </div>
+                        <div className="flex justify-between items-center">
+                            <button className="bg-black text-white py-3 px-6 rounded focus:outline-none text-lg" type="submit">
+                                {isLogin ? 'Login' : 'Register'}
+                            </button>
+                            <button
+                                className="text-black hover:underline text-lg"
+                                type="button"
+                                onClick={() => {
+                                    setPageType(isLogin ? 'register' : 'login');
+                                    resetForm();
+                                }}
+                            >
+                                {isLogin ? "Don't have an account? Register here!" : 'Already have an account? Login here!'}
+                            </button>
+                        </div>
+                    </form>
+                </div>
             )}
         </Formik>
     );
