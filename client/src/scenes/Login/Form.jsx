@@ -9,7 +9,7 @@ import { setLogin } from 'state';
 
 
 
-// import { Mail, LogIn } from 'lucide-react';
+
 
 
 
@@ -157,7 +157,7 @@ const Form = () => {
                                 {isLogin ? 'Login' : 'Register'}
                             </button>
                             <button
-                                className="text-black hover:underline text-lg"
+                                className="text-black hover:underline text-sm"
                                 type="button"
                                 onClick={() => {
                                     setPageType(isLogin ? 'register' : 'login');
