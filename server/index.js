@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 
 import authRoutes from './routes/auth.js';
+import projectRoutes from './routes/project.js';
 
 // CONFIGS
 
@@ -20,6 +21,7 @@ app.use(cors());
 // ROUTES
 
 app.use("/auth", authRoutes);
+app.use("/projects", projectRoutes);
 
 const PORT = process.env.PORT || 6001;
 
