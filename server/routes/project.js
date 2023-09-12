@@ -10,7 +10,7 @@ router.post("/:projectId/issue", verifyToken, createIssue);
 
 router.delete("/:projectId/:issueId", verifyToken, deleteIssue);
 
-router.delete("/:projectId/delete", verifyToken, deleteProjectWithIssues);
+router.delete("/:projectId", verifyToken, deleteProjectWithIssues);
 
 router.get("/projects", verifyToken, getAllProjects);
 

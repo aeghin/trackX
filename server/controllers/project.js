@@ -83,7 +83,7 @@ export const createIssue = async (req, res) => {
 
 export const deleteIssue = async (req, res) => {
     try {
-        const { projectId, IssueId } = req.params;
+        const { projectId, issueId } = req.params;
 
         // Check if the project exists
         const project = await Project.findById(projectId);
@@ -92,13 +92,13 @@ export const deleteIssue = async (req, res) => {
         };
 
         // Check if the issue exists and delete it
-        const issue = await Issue.findByIdAndDelete(IssueId);
+        const issue = await Issue.findByIdAndDelete(issueId);
         if (!issue) {
             return res.status(400).json({ message: "Issue not found" });
         };
 
         // Remove the issue ID from the project's issues array using MongoDB's $pull operator
-        await Project.findByIdAndUpdate(projectId, { $pull: { issues: IssueId } });
+        await Project.findByIdAndUpdate(projectId, { $pull: { issues: issueId } });
 
         return res.status(200).json({ message: "Issue deleted successfully" });
 
@@ -135,7 +135,7 @@ export const deleteProjectWithIssues = async (req, res) => {
 };
 
 export const getAllProjects = async (req, res) => {
-    //getting all projects to display when user is logged in and in the dahboard.
+    //getting all projects to display when user is logged in and in the dashboard.
     try {
         const projects = await Project.find();
 
