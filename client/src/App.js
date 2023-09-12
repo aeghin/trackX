@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 function App() {
 
   const authenticated = Boolean(useSelector((state) => state.token));
-
+  
   return (
     <div className="App">
       <BrowserRouter>
