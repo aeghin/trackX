@@ -7,9 +7,6 @@ const Navbar = () => {
 
     const authenticated = Boolean(useSelector((state) => state.token));
 
-
-
-
     return (
         <nav className="bg-white shadow-lg">
             <div className="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">

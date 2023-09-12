@@ -1,5 +1,6 @@
 import Project from '../models/Project.js';
 import User from '../models/User.js';
+import Issue from '../models/Issue.js';
 
 
 // Create Project 
@@ -46,13 +47,14 @@ export const createProject = async (req, res) => {
 export const createIssue = async (req, res) => {
 
     try {
-        const { title, description, created_by, status, due_date, project_id } = req.body;
+        const { projectId } = req.params;
+        const { title, description, created_by, status, due_date } = req.body;
 
         // Validate project existence
-        const project = await Project.findById(project_id);
+        const project = await Project.findById(projectId);
         if (!project) {
-            return res.status(400).json({ message: 'Project not found' });
-        }
+            return res.status(400).json({ message: "Project not found" });
+        };
 
         // Create a new issue
         const newIssue = new Issue({
@@ -79,6 +81,59 @@ export const createIssue = async (req, res) => {
 
 };
 
+export const deleteIssue = async (req, res) => {
+    try {
+        const { projectId, IssueId } = req.params;
+
+        // Check if the project exists
+        const project = await Project.findById(projectId);
+        if (!project) {
+            return res.status(400).json({ message: "Project not found" });
+        };
+
+        // Check if the issue exists and delete it
+        const issue = await Issue.findByIdAndDelete(IssueId);
+        if (!issue) {
+            return res.status(400).json({ message: "Issue not found" });
+        };
+
+        // Remove the issue ID from the project's issues array using MongoDB's $pull operator
+        await Project.findByIdAndUpdate(projectId, { $pull: { issues: IssueId } });
+
+        return res.status(200).json({ message: "Issue deleted successfully" });
+
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+
+export const deleteProjectWithIssues = async (req, res) => {
+    try {
+        const { projectId } = req.params;
+
+        const project = await Project.findById(projectId);
+        if (!project) {
+            return res.status(404).json({ message: "Project not found" });
+        }
+
+        // Delete all issues associated with the project
+        await Issue.deleteMany({ _id: { $in: project.issues } });
+
+        // Delete the project itself
+        await Project.findByIdAndDelete(projectId);
+
+        // Remove this project from the user's project array
+        const user = await User.findById(project.user_id);
+        user.projects.pull(projectId);
+        await user.save();
+
+        res.status(200).json({ message: "Project and its issues successfully deleted" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 export const getAllProjects = async (req, res) => {
     //getting all projects to display when user is logged in and in the dahboard.
     try {
@@ -92,13 +147,4 @@ export const getAllProjects = async (req, res) => {
 
     };
 
-};
-
-export const deleteProject = (req, res) => {
-
-    try {
-
-    } catch (err) {
-        res.status(404).json({ message: err.message });
-    }
 };
