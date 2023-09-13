@@ -45,6 +45,6 @@ export const globalSlice = createSlice({
     },
 });
 
-export const { setLogin, setLogout, addIssue, deleteIssue, setProjects } = globalSlice.actions;
+export const { setLogin, setLogout, addIssue, deleteIssue, setProjects, deleteProject } = globalSlice.actions;
 
 export default globalSlice.reducer;

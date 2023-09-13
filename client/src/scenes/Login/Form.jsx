@@ -109,7 +109,7 @@ const Form = () => {
                 resetForm,
             }) => (
                 <div className="bg-gray-200 min-h-screen flex justify-center items-center">
-                    <form onSubmit={handleSubmit} className="bg-white p-12 rounded-lg shadow-md w-full md:w-1/2 lg:w-1/3">
+                    <form onSubmit={handleSubmit} className="bg-white p-16 rounded-lg shadow-md w-full md:w-1/2 lg:w-1/3">
                         {isRegister && (
                             <div className="mb-6">
                                 <input
