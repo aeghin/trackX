@@ -8,6 +8,7 @@ import { FaArrowRight, FaArrowLeft, FaProjectDiagram, FaCog } from 'react-icons/
 
 
 const Dashboard = () => {
+
   const dispatch = useDispatch();
   const projects = useSelector((state) => state.projects) || [];
   const token = useSelector((state) => state.token);
@@ -22,7 +23,7 @@ const Dashboard = () => {
       });
 
     const data = await response.json();
-
+      console.log(data);
     dispatch(setProjects(data))
   };
 
@@ -30,6 +31,7 @@ const Dashboard = () => {
     getProjects();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // console.log(projects);
   return (
     <>
       <Navbar />
@@ -56,9 +58,9 @@ const Dashboard = () => {
         {/* Main Content */}
         <div className="w-full p-8 bg-gray-100">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-semibold">Projects</h2>
-            <button className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
-              Create Project
+            <h2 className="text-2xl hover:text-indigo-500 font-semibold">PROJECTS</h2>
+            <button className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+              + Create Project
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -1,10 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
+import { setLogout } from 'state';;
 
 
 const Navbar = () => {
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
-
+    // console.log(user);
     const authenticated = Boolean(useSelector((state) => state.token));
 
     return (
@@ -16,24 +19,20 @@ const Navbar = () => {
                     </Link>
                     <span className="ml-2 text-xs text-gray-600 italic">- Your Path, Clarified</span>
                 </div>
-
-
                 <div className="md:flex items-center animate-swoop-in-right">
                     <div className="flex flex-col md:flex-row md:mx-6">
-                        <Link className="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" to="/about">
-                            About
-                        </Link>
-                        <Link className="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" to="/contact">
-                            Contact
-                        </Link>
                         {authenticated ? (
                             <>
                                 <Link className="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" to="/dashboard">
                                     Dashboard
                                 </Link>
-                                <Link className="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" to="/logout">
+                                <button onClick={() => dispatch(setLogout())}className="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0">
                                     Logout
-                                </Link>
+                                </button>
+                                <h3 className="my-1 text-sm font-medium text-indigo-500 md:mx-4 md:my-0">
+                                    Howdy, {user.username}
+                                </h3>
+
                             </>
                         ) : (
                             <>
