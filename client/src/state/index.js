@@ -22,6 +22,9 @@ export const globalSlice = createSlice({
         setProjects: (state, action) => {
             state.projects = action.payload;
         },
+        addProject: (state, action) => {
+            state.projects.push(action.payload);
+        },
         deleteProject: (state, action) => {
             const { projectId } = action.payload;
             state.projects = state.projects.filter(project => project.id !== projectId);
@@ -45,6 +48,6 @@ export const globalSlice = createSlice({
     },
 });
 
-export const { setLogin, setLogout, addIssue, deleteIssue, setProjects, deleteProject } = globalSlice.actions;
+export const { setLogin, setLogout, addIssue, deleteIssue, setProjects, deleteProject, addProject } = globalSlice.actions;
 
 export default globalSlice.reducer;

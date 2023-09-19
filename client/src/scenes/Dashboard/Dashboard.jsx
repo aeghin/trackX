@@ -1,8 +1,9 @@
 import Navbar from "scenes/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setProjects } from "state";
+import { setProjects, addProject } from "state";
 import { ProjectCard } from "components/ProjectCard.jsx";
+import { Modal } from "components/Modal.jsx";
 
 import { FaArrowRight, FaArrowLeft, FaProjectDiagram, FaCog } from 'react-icons/fa';
 
@@ -10,9 +11,10 @@ import { FaArrowRight, FaArrowLeft, FaProjectDiagram, FaCog } from 'react-icons/
 const Dashboard = () => {
 
   const dispatch = useDispatch();
-  const projects = useSelector((state) => state.projects) || [];
+  const projects = useSelector((state) => state.projects);
   const token = useSelector((state) => state.token);
-
+  const user = useSelector(state => state.user);
+  const [isModalOpen, setModalOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const getProjects = async () => {
@@ -23,14 +25,17 @@ const Dashboard = () => {
       });
 
     const data = await response.json();
-      console.log(data);
-    dispatch(setProjects(data))
+    // console.log(data);
+    dispatch(setProjects(data));
   };
 
   useEffect(() => {
     getProjects();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleProjectAdded = (newProject) => {
+    dispatch(addProject(newProject))
+  }
   // console.log(projects);
   return (
     <>
@@ -59,7 +64,9 @@ const Dashboard = () => {
         <div className="w-full p-8 bg-gray-100">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl hover:text-indigo-500 font-semibold">PROJECTS</h2>
-            <button className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+            <button
+              onClick={() => setModalOpen(true)}
+              className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
               + Create Project
             </button>
           </div>
@@ -70,6 +77,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      {isModalOpen && <Modal user={user} token={token} onProjectAdded={handleProjectAdded} onClose={() => setModalOpen(false)} />}
     </>
   )
 };

@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { setLogout } from 'state';;
 
@@ -6,6 +7,12 @@ import { setLogout } from 'state';;
 const Navbar = () => {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
+    };
+
 
     // console.log(user);
     const authenticated = Boolean(useSelector((state) => state.token));
@@ -23,16 +30,23 @@ const Navbar = () => {
                     <div className="flex flex-col md:flex-row md:mx-6">
                         {authenticated ? (
                             <>
-                                <Link className="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" to="/dashboard">
+                                <Link className="my-1 px-4 py-1 bg-indigo-100 rounded text-sm text-gray-700 font-medium hover:bg-indigo-200 md:mx-4 md:my-0" to="/dashboard">
                                     Dashboard
                                 </Link>
-                                <button onClick={() => dispatch(setLogout())}className="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0">
-                                    Logout
-                                </button>
-                                <h3 className="my-1 text-sm font-medium text-indigo-500 md:mx-4 md:my-0">
-                                    Howdy, {user.username}
-                                </h3>
-
+                                <div className="relative">
+                                    {/* User Icon */}
+                                    <div onClick={toggleDropdown} className="bg-indigo-500 cursor-pointer text-white w-6 h-6 rounded-full flex items-center justify-center">
+                                        {user.username.substring(0, 1).toUpperCase()}
+                                    </div>
+                                    {/* Dropdown */}
+                                    {dropdownOpen && (
+                                        <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg">
+                                            <button onClick={() => dispatch(setLogout())} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white">
+                                                Logout
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
                             </>
                         ) : (
                             <>
