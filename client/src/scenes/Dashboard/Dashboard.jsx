@@ -1,7 +1,7 @@
 import Navbar from "scenes/Navbar/Navbar";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setProjects, addProject } from "state";
+import { addProject, setProjects } from "state";
 import { ProjectCard } from "components/ProjectCard.jsx";
 import { Modal } from "components/Modal.jsx";
 
@@ -32,7 +32,7 @@ const Dashboard = () => {
   useEffect(() => {
     getProjects();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  // console.log(projects.data);
   const handleProjectAdded = (newProject) => {
     dispatch(addProject(newProject))
   }
@@ -72,7 +72,7 @@ const Dashboard = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map(({ title, _id }) => (
-              <ProjectCard key={_id} title={title} />
+              <ProjectCard key={_id} title={title} projectId={_id} token={token} />
             ))}
           </div>
         </div>

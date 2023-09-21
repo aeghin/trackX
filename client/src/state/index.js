@@ -23,11 +23,11 @@ export const globalSlice = createSlice({
             state.projects = action.payload;
         },
         addProject: (state, action) => {
-            state.projects.push(action.payload);
+            state.projects = action.payload
         },
         deleteProject: (state, action) => {
             const { projectId } = action.payload;
-            state.projects = state.projects.filter(project => project.id !== projectId);
+            state.projects = state.projects.filter(project => project._id !== projectId);
 
             delete state.issues[projectId];
         },
