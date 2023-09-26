@@ -1,5 +1,5 @@
 import { FaTrashAlt } from 'react-icons/fa';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteProject } from 'state';
 
 
@@ -24,7 +24,6 @@ export const ProjectCard = ({ title, projectId, token }) => {
         dispatch(deleteProject({ projectId }));
     }
 
-    
 
     return (
 
