@@ -1,6 +1,7 @@
 import { FaTrashAlt } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { deleteProject } from 'state';
+import { Link } from 'react-router-dom';
 
 
 export const ProjectCard = ({ title, projectId, token }) => {
@@ -28,7 +29,10 @@ export const ProjectCard = ({ title, projectId, token }) => {
     return (
 
         <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-lg transition duration-600 ease-in-out transform hover:-translate-y-1 hover:scale-105 hover:bg-indigo-500 hover:text-white">
-            <h3 className="text-xl font-semibold">{title}</h3>
+            <Link to={`/projects/${projectId}/issues`} className="flex-grow hover:text-white transition duration-300 ease-in-out">
+                <h3 className="text-xl font-semibold">{title}</h3>
+            </Link>
+
             <button onClick={handleDelete}
                 className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-600"
             >
