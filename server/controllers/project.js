@@ -6,7 +6,7 @@ import Issue from '../models/Issue.js';
 // Create Project 
 
 export const createProject = async (req, res) => {
-    
+
     try {
 
 
@@ -149,3 +149,20 @@ export const getAllProjects = async (req, res) => {
     };
 
 };
+
+export const getAllIssuesByProject = async (req, res) => {
+    try {
+        const { projectId } = req.params;
+
+        // Find the project by projectId
+        const project = await Project.findById(projectId).populate('issues');
+
+        if (!project) return res.status(404).json({ message: "Project not found" });
+
+        // Return the issues associated with this project
+        return res.status(200).json(project.issues);
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+};
+
