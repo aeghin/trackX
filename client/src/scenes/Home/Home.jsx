@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Navbar from "scenes/Navbar/Navbar";
+
 const Home = () => {
     const navigate = useNavigate();
 
@@ -8,7 +8,7 @@ const Home = () => {
     };
     return (
         <>
-            <Navbar />
+
             {/* <div className='text-gray-800'>Home page</div>
             <button className='text-red-800' onClick={loginPage}>LOGIN</button> */}
             <div className="bg-[#f1f5f9] flex flex-col justify-center items-center h-screen pb-36">

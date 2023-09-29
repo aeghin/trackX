@@ -21,7 +21,7 @@ const Navbar = () => {
         <nav className="bg-white shadow-lg">
             <div className="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
                 <div className="flex justify-between items-center animate-swoop-in-left">
-                    <Link to="/" className="text-2xl font-bold text-gray-800">
+                    <Link to={authenticated ? "/dashboard" : "/"} className="text-2xl font-bold text-gray-800">
                         TrackX
                     </Link>
                     <span className="ml-2 text-xs text-gray-600 italic">- Your Path, Clarified</span>

@@ -4,7 +4,7 @@ import Login from './scenes/Login/Login'
 import Dashboard from './scenes/Dashboard/Dashboard';
 import { Issues } from 'components/Issues';
 import { useSelector } from 'react-redux';
-
+import Navbar from 'scenes/Navbar/Navbar';
 
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+          <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={authenticated ? <Dashboard /> : <Home />} />
