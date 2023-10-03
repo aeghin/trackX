@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setIssues } from "state";
 import { IssuesCard } from "./IssuesCard";
 import { IssueModal } from "./IssueModal";
+
 
 
 export const Issues = () => {
@@ -14,6 +15,7 @@ export const Issues = () => {
   const project = useSelector(state => state.projects);
   const { projectId } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
 
 
   const getIssues = async () => {
@@ -40,7 +42,7 @@ export const Issues = () => {
       <div className="min-h-screen flex">
         <div className="w-full p-8 bg-gray-100">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl py-2 px-6 rounded-lg bg-gray-300 font-semibold">{projects.title}</h2>
+            <button onClick={() => navigate('/dashboard')} className="text-xl py-2 px-6 rounded-lg bg-gray-300 hover:bg-gray-200 font-semibold">{projects.title}</button>
             <button
               onClick={() => setModalOpen(true)}
               className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
