@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addIssue } from "state";
 
-export const IssueModal = ({ onClose }) => {
+export const IssueModal = ({ onClose, token, projectId }) => {
 
     const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
 
     const [issueData, setIssueData] = useState({
         title: '',
@@ -15,6 +17,24 @@ export const IssueModal = ({ onClose }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setIssueData(prevState => ({ ...prevState, [name]: value }));
+    };
+
+    const handleSubmit = async () => {
+        const response = await fetch(`http://localhost:3001/projects/${projectId}/issue`,
+            {
+                method: "POST",
+                headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify(issueData),
+            });
+
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(addIssue({ projectId, issue: data }));
+        } else {
+            console.log('Something went wrong:', await response.json());
+        };
+
+        onClose();
     };
 
     return (
@@ -50,7 +70,7 @@ export const IssueModal = ({ onClose }) => {
                     <option value="Completed">Completed</option>
                 </select>
                 <button
-                    // onClick={handleSubmit}
+                    onClick={handleSubmit}
                     className="bg-gray-500 text-white p-2 hover:bg-indigo-500 rounded"
                 >
                     Add Issue

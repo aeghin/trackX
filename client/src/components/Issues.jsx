@@ -27,7 +27,7 @@ export const Issues = () => {
     )
 
     const data = await response.json();
-    // console.log(data);
+
     dispatch(setIssues({ projectId, issues: data }))
   };
 
@@ -51,7 +51,9 @@ export const Issues = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {issue && issue[projectId] && issue[projectId].map((issueItem) => (
-              <IssuesCard key={issueItem._id} title={issueItem.title} />
+              issueItem && issueItem._id && issueItem.title ? (
+                <IssuesCard key={issueItem._id} title={issueItem.title} />
+              ) : null
             ))}
           </div>
         </div>
