@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setIssues } from "state";
 import { IssuesCard } from "./IssuesCard";
 import { IssueModal } from "./IssueModal";
+import { FaArrowLeft } from "react-icons/fa";
 
 
 
@@ -42,7 +43,14 @@ export const Issues = () => {
       <div className="min-h-screen flex">
         <div className="w-full p-8 bg-gray-100">
           <div className="flex justify-between items-center mb-4">
-            <button onClick={() => navigate('/dashboard')} className="text-xl py-2 px-6 rounded-lg bg-gray-300 hover:bg-gray-200 font-semibold">{projects.title}</button>
+            <div className="flex items-center">
+              <button onClick={() => navigate('/dashboard')} className="hover:text-indigo-500 p-2 rounded" >
+                <FaArrowLeft />
+              </button>
+              <h2 className="text-xl py-2 px-6 ml-2 rounded-lg bg-gray-300 font-semibold">
+                {projects.title}
+              </h2>
+            </div>
             <button
               onClick={() => setModalOpen(true)}
               className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
@@ -52,7 +60,7 @@ export const Issues = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {issue && issue[projectId] && issue[projectId].map((issueItem) => (
               issueItem && issueItem._id && issueItem.title ? (
-                <IssuesCard key={issueItem._id} title={issueItem.title} />
+                <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id} />
               ) : null
             ))}
           </div>

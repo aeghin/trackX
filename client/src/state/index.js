@@ -45,7 +45,7 @@ export const globalSlice = createSlice({
         deleteIssue: (state, action) => {
             const { projectId, issueId } = action.payload;
             if (state.issues[projectId]) {
-                state.issues[projectId] = state.issues[projectId].filter(issue => issue.id !== issueId);
+                state.issues[projectId] = state.issues[projectId].filter(issue => issue._id !== issueId);
             };
         },
 
