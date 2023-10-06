@@ -1,5 +1,5 @@
 import express from 'express';
-import { createIssue, createProject, deleteIssue, deleteProjectWithIssues, getAllProjects, getAllIssuesByProject } from '../controllers/project.js';
+import { createIssue, createProject, deleteIssue, deleteProjectWithIssues, getAllProjects, getAllIssuesByProject, updateIssue } from '../controllers/project.js';
 import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -15,5 +15,7 @@ router.delete("/:projectId", verifyToken, deleteProjectWithIssues);
 router.get("/projects", verifyToken, getAllProjects);
 
 router.get("/:projectId/issues", verifyToken, getAllIssuesByProject);
+
+router.put("/issues/:issueId", verifyToken, updateIssue)
 
 export default router;

@@ -166,3 +166,17 @@ export const getAllIssuesByProject = async (req, res) => {
     }
 };
 
+export const updateIssue = async (req, res) => {
+
+    try {
+        const { issueId } = req.params;
+        const { title, description, status } = req.body;
+        const issue = await Issue.findByIdAndUpdate(issueId, { title, description, status }, { new: true });
+
+
+        return res.status(200).json(issue);
+
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    };
+};
