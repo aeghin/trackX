@@ -34,10 +34,15 @@ export const Issues = () => {
 
   useEffect(() => {
     getIssues();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [projectId, token]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const projects = project.find(proj => proj._id === projectId);
 
+
+  const inProgressIssues = issue[projectId].filter(iss => iss.status === 'In-Progress');
+  const backlogIssues = issue[projectId].filter(iss => iss.status === 'Backlog');
+  const completedIssues = issue[projectId].filter(iss => iss.status === 'Completed');
+  
   return (
     <>
       <div className="min-h-screen flex">
@@ -58,10 +63,19 @@ export const Issues = () => {
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {issue && issue[projectId] && issue[projectId].map((issueItem) => (
+            {/* {issue && issue[projectId] && issue[projectId].map((issueItem) => (
               issueItem && issueItem._id && issueItem.title ? (
                 <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id} />
               ) : null
+            ))} */}
+            {inProgressIssues.map(issueItem => (
+              <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id}/>
+            ))}
+            {backlogIssues.map(issueItem => (
+              <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id}/>
+            ))}
+            {completedIssues.map(issueItem => (
+              <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id}/>
             ))}
           </div>
         </div>
