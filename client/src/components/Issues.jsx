@@ -42,7 +42,7 @@ export const Issues = () => {
   const inProgressIssues = issue[projectId].filter(iss => iss.status === 'In-Progress');
   const backlogIssues = issue[projectId].filter(iss => iss.status === 'Backlog');
   const completedIssues = issue[projectId].filter(iss => iss.status === 'Completed');
-  
+
   return (
     <>
       <div className="min-h-screen flex">
@@ -62,21 +62,25 @@ export const Issues = () => {
               + Add Issue
             </button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {/* {issue && issue[projectId] && issue[projectId].map((issueItem) => (
-              issueItem && issueItem._id && issueItem.title ? (
+          <div className="grid grid-cols-3 gap-4 mt-8 items-start content-start">
+            <div className="bg-red-300 p-4 rounded">
+              <h3 className="text-xl font-bold mb-4">Backlog</h3>
+              {backlogIssues.map(issueItem => (
                 <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id} />
-              ) : null
-            ))} */}
-            {inProgressIssues.map(issueItem => (
-              <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id}/>
-            ))}
-            {backlogIssues.map(issueItem => (
-              <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id}/>
-            ))}
-            {completedIssues.map(issueItem => (
-              <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id}/>
-            ))}
+              ))}
+            </div>
+            <div className="bg-orange-300 p-4 rounded">
+              <h3 className="text-xl font-bold mb-4">In-Progress</h3>
+              {inProgressIssues.map(issueItem => (
+                <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id} />
+              ))}
+            </div>
+            <div className="bg-green-400 p-4 rounded">
+              <h3 className="text-xl font-bold mb-4">Completed</h3>
+              {completedIssues.map(issueItem => (
+                <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
