@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addIssue } from "state";
-
+import { toast } from "sonner";
 export const IssueModal = ({ onClose, token, projectId }) => {
 
     const user = useSelector(state => state.user);
@@ -35,6 +35,7 @@ export const IssueModal = ({ onClose, token, projectId }) => {
         };
 
         onClose();
+        toast.success('issue created!')
     };
 
     return (

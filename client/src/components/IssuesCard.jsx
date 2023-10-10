@@ -2,7 +2,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { deleteIssue } from 'state';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { toast } from 'sonner';
 
 
 export const IssuesCard = ({ title, token, projectId, issueId }) => {
@@ -21,7 +21,9 @@ export const IssuesCard = ({ title, token, projectId, issueId }) => {
             throw new Error(errorData.message || 'There was an error deleting the project');
         };
 
-        dispatch(deleteIssue({ projectId, issueId }))
+        dispatch(deleteIssue({ projectId, issueId }));
+        toast.error('issue deleted!');
+
     };
 
     return (

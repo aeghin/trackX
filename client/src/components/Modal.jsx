@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "sonner";
 // import { useDispatch } from "react-redux";
 // import { addProject } from "state";
 export const Modal = ({ onClose, user, token, onProjectAdded }) => {
@@ -22,6 +23,7 @@ export const Modal = ({ onClose, user, token, onProjectAdded }) => {
         };
         // console.log(projectName)
         onClose();
+        toast.success('project created!');
     };
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">

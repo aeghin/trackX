@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import Navbar from 'scenes/Navbar/Navbar';
 import { IssueDetails } from 'components/IssueDetails';
 
+import { Toaster } from 'sonner';
 function App() {
 
   const authenticated = Boolean(useSelector((state) => state.token));
@@ -23,6 +24,7 @@ function App() {
           <Route path="/projects/:projectId/:issueId" element={<IssueDetails />} />
         </Routes>
       </BrowserRouter>
+      <Toaster richColors position="bottom-center"/>
     </div>
   );
 };

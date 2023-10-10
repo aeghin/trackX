@@ -2,7 +2,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { deleteProject } from 'state';
 import { Link } from 'react-router-dom';
-
+import { toast } from 'sonner';
 
 export const ProjectCard = ({ title, projectId, token }) => {
     const dispatch = useDispatch();
@@ -23,6 +23,7 @@ export const ProjectCard = ({ title, projectId, token }) => {
         };
 
         dispatch(deleteProject({ projectId }));
+        toast.error('project deleted')
     }
 
 
