@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useState } from "react";
 import { EditPage } from "./EditPage";
-
 export const IssueDetails = () => {
 
   const navigate = useNavigate();
@@ -30,26 +29,26 @@ export const IssueDetails = () => {
           </div>
         </div>
       </div>
-      { !isEditPage ?
-      <div className="w-1/2 h-3/4 bg-white p-6 rounded-lg shadow-lg">
-        <div className="mb-4">
-          <h3 className="text-lg font-medium">Title:</h3>
-          <p className="text-base text-gray-700">{issues.title}</p>
+      {!isEditPage ?
+        <div className="w-1/2 h-3/4 bg-white p-6 rounded-lg shadow-lg">
+          <div className="mb-4">
+            <h3 className="text-lg font-medium">Title:</h3>
+            <p className="text-base text-gray-700">{issues.title}</p>
+          </div>
+          <div className="mb-4">
+            <h3 className="text-lg font-medium">Description:</h3>
+            <p className="text-base text-gray-700">{issues.description}</p>
+          </div>
+          <div className="mb-4">
+            <h3 className="text-lg font-medium">Status:</h3>
+            <p className="text-base text-gray-700">In Progress</p>
+          </div>
+          <div className="flex justify-end">
+            <button onClick={() => setIsEditPage(true)} className="bg-red-400 py-2 px-6 rounded-lg shadow-md hover:bg-indigo-100">Edit</button>
+          </div>
         </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-medium">Description:</h3>
-          <p className="text-base text-gray-700">{issues.description}</p> 
-        </div>
-        <div className="mb-4">
-          <h3 className="text-lg font-medium">Status:</h3>
-          <p className="text-base text-gray-700">In Progress</p> 
-        </div>
-        <div className="flex justify-end">
-          <button onClick={() => setIsEditPage(true)} className="bg-red-400 py-2 px-6 rounded-lg shadow-md hover:bg-indigo-100">Edit</button>
-        </div>
-      </div>
-      :
-      <EditPage issues={issues} />
+        :
+        <EditPage issues={issues} issueId={issueId} projectId={projectId} />
       }
     </div>
   )
