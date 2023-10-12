@@ -48,10 +48,19 @@ export const globalSlice = createSlice({
                 state.issues[projectId] = state.issues[projectId].filter(issue => issue._id !== issueId);
             };
         },
-
+        updateIssue: (state, action) => {
+            const { projectId, issueId, updatedIssue } = action.payload;
+            const projectIssues = state.issues[projectId];
+            if (projectIssues) {
+                const issueIndex = projectIssues.findIndex(issue => issue._id === issueId);
+                if (issueIndex !== -1) {
+                    projectIssues[issueIndex] = updatedIssue;
+                }
+            }
+        },
     },
 });
 
-export const { setLogin, setLogout, setIssues, addIssue, deleteIssue, setProjects, deleteProject, addProject } = globalSlice.actions;
+export const { setLogin, setLogout, setIssues, addIssue, deleteIssue, setProjects, deleteProject, addProject, updateIssue } = globalSlice.actions;
 
 export default globalSlice.reducer;

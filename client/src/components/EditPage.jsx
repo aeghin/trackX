@@ -1,19 +1,20 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-
+import { updateIssue } from "state";
 
 
 export const EditPage = ({ issues, issueId, projectId }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const token = useSelector(state => state.token);
 
     const [editDetails, setEditDetails] = useState({
-        title: "",
-        description: "",
-        status: "",
+        title: issues.title,
+        description: issues.description,
+        status: issues.status,
     });
 
     const handleChange = (e) => {
@@ -21,17 +22,20 @@ export const EditPage = ({ issues, issueId, projectId }) => {
         setEditDetails(prevState => ({ ...prevState, [name]: value }));
     };
 
-    const updateIssue = async () => {
+    const updateIssueHandler = async () => {
         const response = await fetch(`http://localhost:3001/projects/issues/${issueId}`, {
             method: "PUT",
             headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(editDetails)
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'There was an error editing issue');
+            throw new Error(data.message || 'There was an error editing issue');
         };
+
+        dispatch(updateIssue({ projectId, issueId, updatedIssue: data }));
         navigate(`/projects/${projectId}/issues`);
         toast.success('Issue updated');
     };
@@ -51,12 +55,12 @@ export const EditPage = ({ issues, issueId, projectId }) => {
                 <select name="status" value={editDetails.status} onChange={handleChange} className="border rounded w-full py-2 px-3 text-gray-700 leading-tight">
                     <option value="" disabled>Select status</option>
                     <option>Back-log</option>
-                    <option>In-progress</option>
+                    <option>In-Progress</option>
                     <option>Completed</option>
                 </select>
             </div>
             <div className="flex justify-end">
-                <button onClick={updateIssue} className="bg-green-400 py-2 px-6 rounded-lg shadow-md hover:bg-indigo-100">Update Issue</button>
+                <button onClick={updateIssueHandler} className="bg-green-400 py-2 px-6 rounded-lg shadow-md hover:bg-indigo-100">Update Issue</button>
             </div>
         </div>
     );

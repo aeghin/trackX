@@ -41,7 +41,7 @@ export const IssueDetails = () => {
           </div>
           <div className="mb-4">
             <h3 className="text-lg font-medium">Status:</h3>
-            <p className="text-base text-gray-700">In Progress</p>
+            <p className="text-base text-gray-700">{issues.status}</p>
           </div>
           <div className="flex justify-end">
             <button onClick={() => setIsEditPage(true)} className="bg-red-400 py-2 px-6 rounded-lg shadow-md hover:bg-indigo-100">Edit</button>
