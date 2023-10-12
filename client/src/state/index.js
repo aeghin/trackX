@@ -55,12 +55,19 @@ export const globalSlice = createSlice({
                 const issueIndex = projectIssues.findIndex(issue => issue._id === issueId);
                 if (issueIndex !== -1) {
                     projectIssues[issueIndex] = updatedIssue;
-                }
-            }
+                };
+            };
+        },
+        updateProject: (state, action) => {
+            const { projectId, newTitle } = action.payload;
+            const projectIndex = state.projects.findIndex(project => project._id === projectId);
+            if (projectIndex !== -1) {
+                state.projects[projectIndex].title = newTitle;
+            };
         },
     },
 });
 
-export const { setLogin, setLogout, setIssues, addIssue, deleteIssue, setProjects, deleteProject, addProject, updateIssue } = globalSlice.actions;
+export const { setLogin, setLogout, setIssues, addIssue, deleteIssue, setProjects, deleteProject, addProject, updateIssue, updateProject } = globalSlice.actions;
 
 export default globalSlice.reducer;

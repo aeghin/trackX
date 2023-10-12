@@ -180,3 +180,15 @@ export const updateIssue = async (req, res) => {
         return res.status(500).json({ message: err.message });
     };
 };
+
+export const updateProjectName = async (req, res) => {
+    try {
+        const { projectId } = req.params;
+        const { title } = req.body;
+        const updatedProjectName = await Project.findByIdAndUpdate(projectId, { title }, { new: true });
+
+        return res.status(200).json(updatedProjectName);
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    };
+};

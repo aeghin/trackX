@@ -1,13 +1,15 @@
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaRegEdit } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { deleteProject } from 'state';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
+import { ProjectEdit } from './ProjectEdit';
+import { useState } from 'react';
+
 
 export const ProjectCard = ({ title, projectId, token }) => {
     const dispatch = useDispatch();
-
-
+    const [isModalOpen, setIsModal] = useState(false);
 
     const handleDelete = async () => {
         const response = await fetch(`http://localhost:3001/projects/${projectId}`,
@@ -28,19 +30,23 @@ export const ProjectCard = ({ title, projectId, token }) => {
 
 
     return (
+        <>
 
-        <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-lg transition duration-600 ease-in-out transform hover:-translate-y-1 hover:scale-105 hover:bg-indigo-500 hover:text-white">
-            <Link to={`/projects/${projectId}/issues`} className="flex-grow hover:text-white transition duration-300 ease-in-out">
-                <h3 className="text-xl font-semibold">{title}</h3>
-            </Link>
-
-            <button onClick={handleDelete}
-                className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-600"
-            >
-                <FaTrashAlt />
-            </button>
-        </div>
-
+            <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-lg transition duration-600 ease-in-out transform hover:-translate-y-1 hover:scale-105 hover:bg-indigo-500 hover:text-white">
+                <Link to={`/projects/${projectId}/issues`} className="flex-grow hover:text-white transition duration-300 ease-in-out">
+                    <h3 className="text-xl font-semibold">{title}</h3>
+                </Link>
+                <button onClick={() => setIsModal(true)} className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-400 pr-2">
+                    <FaRegEdit />
+                </button>
+                <button onClick={handleDelete}
+                    className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-600"
+                >
+                    <FaTrashAlt />
+                </button>
+            </div>
+            {isModalOpen && <ProjectEdit onClose={() => setIsModal(false)} projectId={projectId} />}
+        </>
     )
 };
 
