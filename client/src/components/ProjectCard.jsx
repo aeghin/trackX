@@ -1,5 +1,5 @@
 import { FaTrashAlt, FaRegEdit } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteProject } from 'state';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -7,8 +7,9 @@ import { ProjectEdit } from './ProjectEdit';
 import { useState } from 'react';
 
 
-export const ProjectCard = ({ title, projectId, token }) => {
+export const ProjectCard = ({ title, projectId }) => {
     const dispatch = useDispatch();
+    const token = useSelector(state => state.token);
     const [isModalOpen, setIsModal] = useState(false);
 
     const handleDelete = async () => {
@@ -40,7 +41,7 @@ export const ProjectCard = ({ title, projectId, token }) => {
                     <FaRegEdit />
                 </button>
                 <button onClick={handleDelete}
-                    className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-600"
+                    className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-500"
                 >
                     <FaTrashAlt />
                 </button>

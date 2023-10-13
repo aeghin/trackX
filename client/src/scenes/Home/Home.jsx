@@ -4,15 +4,8 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
     const navigate = useNavigate();
 
-    // const goToSignIn = () => {
-    //     navigate("/login")
-    // };
-
     return (
         <>
-
-            {/* <div className='text-gray-800'>Home page</div>
-            <button className='text-red-800' onClick={loginPage}>LOGIN</button> */}
             <div className="bg-[#f1f5f9] flex flex-col justify-center items-center h-screen pb-36">
                 <div className="animate-swoop-in flex flex-col justify-center items-center">
                     <h1 className="text-4xl font-mono">
@@ -27,7 +20,7 @@ const Home = () => {
                 </div>
             </div>
         </>
-    )
+    );
 };
 
 export default Home

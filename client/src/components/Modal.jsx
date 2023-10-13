@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { toast } from "sonner";
-// import { useDispatch } from "react-redux";
-// import { addProject } from "state";
-export const Modal = ({ onClose, user, token, onProjectAdded }) => {
+import { useSelector } from "react-redux";
+
+
+export const Modal = ({ onClose, onProjectAdded }) => {
     const [projectName, setProjectName] = useState('');
+    const token = useSelector(state => state.token);
+    const user = useSelector(state => state.user);
     const user_Id = user._id;
-    // const dispatch = useDispatch();
+
 
     const handleSubmit = async () => {
         const response = await fetch("http://localhost:3001/projects/project",

@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addIssue } from "state";
 import { toast } from "sonner";
-export const IssueModal = ({ onClose, token, projectId }) => {
+
+export const IssueModal = ({ onClose, projectId }) => {
 
     const user = useSelector(state => state.user);
+    const token = useSelector(state => state.token);
     const dispatch = useDispatch();
 
     const [issueData, setIssueData] = useState({

@@ -1,12 +1,13 @@
 import { FaTrashAlt } from 'react-icons/fa';
 import { deleteIssue } from 'state';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 
 
-export const IssuesCard = ({ title, token, projectId, issueId }) => {
+export const IssuesCard = ({ title, projectId, issueId }) => {
     const dispatch = useDispatch();
+    const token = useSelector(state => state.token);
 
     const handleDelete = async () => {
 
@@ -29,12 +30,12 @@ export const IssuesCard = ({ title, token, projectId, issueId }) => {
     return (
 
         <div className="flex justify-between items-center bg-white p-4 mb-2 rounded-lg shadow-lg transition duration-600 ease-in-out transform hover:-translate-y-1 hover:scale-105 hover:bg-indigo-500 hover:text-white">
-            <Link to={`/projects/${projectId}/${issueId}`}>
+            <Link className="flex-grow" to={`/projects/${projectId}/${issueId}`}>
                 <h3 className="text-xl font-semibold">{title}</h3>
             </Link>
 
             <button onClick={handleDelete}
-                className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-600"
+                className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-500"
             >
                 <FaTrashAlt />
             </button>

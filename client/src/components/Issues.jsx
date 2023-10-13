@@ -63,35 +63,29 @@ export const Issues = () => {
             </button>
           </div>
           <div className="grid grid-cols-3 gap-4 mt-8 items-start content-start">
-          
-             {/* {issue && issue[projectId] && issue[projectId].map((issueItem) => (
-              issueItem && issueItem._id && issueItem.title ? (
-                <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id} />
-              ) : null
-            ))} */}
 
             <div className="bg-red-300 p-4 rounded">
               <h3 className="text-xl font-bold mb-4">Backlog</h3>
               {backlogIssues.map(issueItem => (
-                <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id} />
+                <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} />
               ))}
             </div>
             <div className="bg-orange-300 p-4 rounded">
               <h3 className="text-xl font-bold mb-4">In-Progress</h3>
               {inProgressIssues.map(issueItem => (
-                <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id} />
+                <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} />
               ))}
             </div>
             <div className="bg-green-400 p-4 rounded">
               <h3 className="text-xl font-bold mb-4">Completed</h3>
               {completedIssues.map(issueItem => (
-                <IssuesCard key={issueItem._id} title={issueItem.title} token={token} projectId={projectId} issueId={issueItem._id} />
+                <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} />
               ))}
             </div>
           </div>
         </div>
       </div>
-      {isModalOpen && <IssueModal token={token} projectId={projectId} onClose={() => setModalOpen(false)} />}
+      {isModalOpen && <IssueModal projectId={projectId} onClose={() => setModalOpen(false)} />}
     </>
   )
 };

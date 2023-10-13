@@ -13,7 +13,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const projects = useSelector((state) => state.projects);
   const token = useSelector((state) => state.token);
-  const user = useSelector(state => state.user);
   const [isModalOpen, setModalOpen] = useState(false);
   // const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -41,24 +40,6 @@ const Dashboard = () => {
     <>
 
       <div className="min-h-screen flex">
-        {/* Sidebar */}
-        {/* <div className={`bg-gray-600 text-white transition-width duration-300 ease-in-out ${sidebarOpen ? 'w-36' : 'w-16'} flex-shrink-0`}>
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-4 w-full h-16 flex justify-center items-center">
-            {sidebarOpen ? <FaArrowLeft /> : <FaArrowRight />}
-          </button>
-          {sidebarOpen && (
-            <ul className="flex flex-col items-center">
-              <li className="mb-2 p-4 flex items-center justify-center w-full">
-                <FaProjectDiagram className="mr-2" />
-                <span>Projects</span>
-              </li>
-              <li className="mb-2 p-4 flex items-center justify-center w-full">
-                <FaCog className="mr-2" />
-                <span>Settings</span>
-              </li>
-            </ul>
-          )}
-        </div> */}
 
         {/* Main Content */}
         <div className="w-full p-8 bg-gray-100">
@@ -72,12 +53,12 @@ const Dashboard = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map(({ title, _id }) => (
-              <ProjectCard key={_id} title={title} projectId={_id} token={token} />
+              <ProjectCard key={_id} title={title} projectId={_id} />
             ))}
           </div>
         </div>
       </div>
-      {isModalOpen && <Modal user={user} token={token} onProjectAdded={handleProjectAdded} onClose={() => setModalOpen(false)} />}
+      {isModalOpen && <Modal onProjectAdded={handleProjectAdded} onClose={() => setModalOpen(false)} />}
     </>
   )
 };
