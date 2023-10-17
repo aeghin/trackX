@@ -33,11 +33,7 @@ export const createProject = async (req, res) => {
         user.projects.push(newProject._id);
         await user.save();
 
-
-        // getting all past and newly created project(s)
-        const project = await Project.find();
-
-        res.status(201).json(project);
+        res.status(201).json(newProject);
 
     } catch (err) {
         res.status(409).json({ message: err.message });
@@ -139,7 +135,7 @@ export const getAllProjects = async (req, res) => {
     //getting all projects to display when user is logged in and in the dashboard.
 
     try {
-         const { userId } = req.params;
+        const { userId } = req.params;
 
         const projects = await Project.find({ user_id: userId });
 

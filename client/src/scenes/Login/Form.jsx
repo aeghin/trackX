@@ -69,6 +69,12 @@ const Form = () => {
 
 
     const login = async (values, onSubmitProps) => {
+
+        //  try {
+
+        //  } catch(err) {
+
+        //  };
         const loggedInResponse = await fetch('http://localhost:3001/auth/login',
             {
                 method: 'POST',
@@ -77,10 +83,9 @@ const Form = () => {
             });
 
         const loggedIn = await loggedInResponse.json();
-
         onSubmitProps.resetForm();
 
-        if (loggedIn) {
+        if (loggedIn.ok) {
             dispatch(
                 setLogin({
                     user: loggedIn.user,
@@ -89,8 +94,11 @@ const Form = () => {
             );
             toast.success('Logged in!');
             navigate('/dashboard');
-            
+
+        } else {
+            toast.error('wrong credentials, try again');
         };
+
     };
 
     const handleFormSubmit = async (values, onSubmitProps) => {

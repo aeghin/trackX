@@ -15,12 +15,12 @@ const Dashboard = () => {
   const token = useSelector((state) => state.token);
   const [isModalOpen, setModalOpen] = useState(false);
   const user = useSelector(state => state.user);
+
   
-  // const [sidebarOpen, setSidebarOpen] = useState(false);
   const getProjects = async () => {
-    
+
     const userId = user._id;
-    
+
 
     const response = await fetch(`http://localhost:3001/projects/projects/${userId}`,
       {
@@ -40,7 +40,7 @@ const Dashboard = () => {
   const handleProjectAdded = (newProject) => {
     dispatch(addProject(newProject))
   }
-  // console.log(projects);
+  console.log(projects);
   return (
     <>
 
@@ -48,19 +48,36 @@ const Dashboard = () => {
 
         {/* Main Content */}
         <div className="w-full p-8 bg-gray-100">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl py-2 px-6 rounded-lg bg-gray-300 font-semibold">PROJECTS</h2>
-            <button
-              onClick={() => setModalOpen(true)}
-              className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
-              + Create Project
-            </button>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {projects.map(({ title, _id }) => (
-              <ProjectCard key={_id} title={title} projectId={_id} />
-            ))}
-          </div>
+          {projects.length === 0 ? (
+           
+            <div className="flex flex-col items-center pb-32 justify-center h-screen">
+              <div className="rounded-lg border p-12 bg-slate-200 text-center w-1/2">
+                <p className="text-4xl mb-4">Start a project</p>
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="bg-gray-600 text-white font-semibold py-3 px-8 text-lg rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+                  + Create Project
+                </button>
+              </div>
+            </div>
+          ) : (
+            
+            <>
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl py-2 px-6 rounded-lg bg-gray-300 font-semibold">PROJECTS</h2>
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+                  + Create Project
+                </button>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {projects.map(({ title, _id }) => (
+                  <ProjectCard key={_id} title={title} projectId={_id} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
       {isModalOpen && <Modal onProjectAdded={handleProjectAdded} onClose={() => setModalOpen(false)} />}
