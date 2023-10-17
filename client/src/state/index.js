@@ -29,7 +29,7 @@ export const globalSlice = createSlice({
             state.issues[projectId] = issues;
         },
         addProject: (state, action) => {
-            state.projects = action.payload
+            state.projects.push(action.payload);
         },
         deleteProject: (state, action) => {
             const { projectId } = action.payload;

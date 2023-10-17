@@ -20,6 +20,7 @@ export const Modal = ({ onClose, onProjectAdded }) => {
 
         if (response.ok) {
             const data = await response.json();
+            // console.log(data);
             onProjectAdded(data);
         } else {
             console.log('Something went wrong:', await response.json());
