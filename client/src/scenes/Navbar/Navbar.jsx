@@ -44,12 +44,10 @@ const Navbar = () => {
                                         <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg">
                                             <button onClick={() => {
                                                 dispatch(setLogout());
-                                                console.log('Purging persistor...');  // Log before purging
                                                 persistor.purge().then(() => {
-                                                    console.log('Persistor purged');  // Log after purging
                                                     setDropdownOpen(false);
                                                 }).catch(error => {
-                                                    console.error('Persistor purge error: ', error);  // Log any errors
+                                                    console.error('Persistor purge error: ', error);
                                                 });
                                             }} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white">
                                                 Logout

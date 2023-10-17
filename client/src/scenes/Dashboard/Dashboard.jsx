@@ -40,7 +40,7 @@ const Dashboard = () => {
   const handleProjectAdded = (newProject) => {
     dispatch(addProject(newProject))
   }
-  console.log(projects);
+
   return (
     <>
 
