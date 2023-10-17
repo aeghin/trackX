@@ -12,7 +12,7 @@ router.delete("/:projectId/:issueId", verifyToken, deleteIssue);
 
 router.delete("/:projectId", verifyToken, deleteProjectWithIssues);
 
-router.get("/projects", verifyToken, getAllProjects);
+router.get("/projects/:userId", verifyToken, getAllProjects);
 
 router.get("/:projectId/issues", verifyToken, getAllIssuesByProject);
 

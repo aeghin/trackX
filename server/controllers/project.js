@@ -137,8 +137,11 @@ export const deleteProjectWithIssues = async (req, res) => {
 
 export const getAllProjects = async (req, res) => {
     //getting all projects to display when user is logged in and in the dashboard.
+
     try {
-        const projects = await Project.find();
+         const { userId } = req.params;
+
+        const projects = await Project.find({ user_id: userId });
 
         res.status(200).json(projects);
 

@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setLogin } from 'state';
+import { toast } from 'sonner';
 
 
 
@@ -51,14 +52,16 @@ const Form = () => {
 
             if (!userResponse.ok) {
                 throw new Error(`Registration failed with status: ${userResponse.status}`);
-            }
+            };
 
             const savedUser = await userResponse.json();
             onSubmitProps.resetForm();
 
             if (savedUser) {
                 setPageType('login');
-            }
+                toast.success('succesfully registered');
+            };
+
         } catch (error) {
             console.error('Error during registration:', error);
         }
@@ -84,8 +87,10 @@ const Form = () => {
                     token: loggedIn.token
                 })
             );
+            toast.success('Logged in!');
             navigate('/dashboard');
-        }
+            
+        };
     };
 
     const handleFormSubmit = async (values, onSubmitProps) => {

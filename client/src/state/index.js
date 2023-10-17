@@ -18,6 +18,8 @@ export const globalSlice = createSlice({
         setLogout: (state) => {
             state.user = null;
             state.token = null;
+            state.projects = [];
+            state.issues = {};
         },
         setProjects: (state, action) => {
             state.projects = action.payload;

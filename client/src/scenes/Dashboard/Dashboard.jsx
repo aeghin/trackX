@@ -14,13 +14,18 @@ const Dashboard = () => {
   const projects = useSelector((state) => state.projects);
   const token = useSelector((state) => state.token);
   const [isModalOpen, setModalOpen] = useState(false);
+  const user = useSelector(state => state.user);
+  
   // const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const getProjects = async () => {
-    const response = await fetch("http://localhost:3001/projects/projects",
+    
+    const userId = user._id;
+    
+
+    const response = await fetch(`http://localhost:3001/projects/projects/${userId}`,
       {
         method: "GET",
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       });
 
     const data = await response.json();

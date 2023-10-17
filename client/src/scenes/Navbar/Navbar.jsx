@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-import { setLogout } from 'state';;
+import { setLogout } from 'state';
+import { persistor } from 'index.js';
 
 
 const Navbar = () => {
@@ -41,7 +42,16 @@ const Navbar = () => {
                                     {/* Dropdown */}
                                     {dropdownOpen && (
                                         <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg">
-                                            <button onClick={() => dispatch(setLogout())} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white">
+                                            <button onClick={() => {
+                                                dispatch(setLogout());
+                                                console.log('Purging persistor...');  // Log before purging
+                                                persistor.purge().then(() => {
+                                                    console.log('Persistor purged');  // Log after purging
+                                                    setDropdownOpen(false);
+                                                }).catch(error => {
+                                                    console.error('Persistor purge error: ', error);  // Log any errors
+                                                });
+                                            }} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white">
                                                 Logout
                                             </button>
                                         </div>
