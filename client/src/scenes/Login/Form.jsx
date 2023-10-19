@@ -1,183 +1,95 @@
 import { useState } from 'react';
-import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { setLogin } from 'state';
 import { toast } from 'sonner';
 
-
-
 const loginSchema = yup.object().shape({
-    email: yup.string().email('invalid email!').required('required!'),
-    password: yup.string().required('required!'),
+    email: yup.string().email('Invalid email!').required('Required!'),
+    password: yup.string().required('Required!'),
 });
 
 const registerSchema = yup.object().shape({
-    username: yup.string().max(6).required('required'),
-    email: yup.string().email('invalid email!').required('required!'),
-    password: yup.string().required('required!'),
+    username: yup.string().max(6).required('Required'),
+    email: yup.string().email('Invalid email!').required('Required!'),
+    password: yup.string().min(8).required('Required!'),
 });
 
-const initialLoginValues = {
-    email: '',
-    password: '',
-};
-
-const initialRegisterValues = {
-    username: '',
-    email: '',
-    password: '',
-};
-
-
-const Form = () => {
-
+export const Form = () => {
     const [pageType, setPageType] = useState('login');
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const isLogin = pageType === 'login';
-    const isRegister = pageType === 'register';
 
-    const register = async (values, onSubmitProps) => {
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(isLogin ? loginSchema : registerSchema),
+        defaultValues: isLogin
+            ? { email: '', password: '' }
+            : { username: '', email: '', password: '' },
+    });
+
+    const onSubmit = async (data) => {
+
         try {
-            const userResponse = await fetch(
-                'http://localhost:3001/auth/register',
-                {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(values),
+            const url = `http://localhost:3001/auth/${isLogin ? 'login' : 'register'}`;
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+            const result = await res.json();
+            // console.log(result);
+            reset();
+            if (res.ok) {
+                if (isLogin) {
+                    dispatch(setLogin(result));
+                    toast.success('Logged in!');
+                    navigate('/dashboard');
+                } else {
+                    setPageType('login');
+                    toast.success('Successfully registered!');
                 }
-            );
-
-            if (!userResponse.ok) {
-                throw new Error(`Registration failed with status: ${userResponse.status}`);
-            };
-
-            const savedUser = await userResponse.json();
-            onSubmitProps.resetForm();
-
-            if (savedUser) {
-                setPageType('login');
-                toast.success('succesfully registered');
-            };
-
+            } else {
+                toast.error('Wrong credentials, try again.');
+            }
         } catch (error) {
-            console.error('Error during registration:', error);
+            console.error('An error occurred:', error);
+            toast.error('An error occurred, please try again.');
         }
     };
 
-
-    const login = async (values, onSubmitProps) => {
-
-        //  try {
-
-        //  } catch(err) {
-
-        //  };
-        const loggedInResponse = await fetch('http://localhost:3001/auth/login',
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(values),
-            });
-
-        const loggedIn = await loggedInResponse.json();
-        onSubmitProps.resetForm();
-
-        if (loggedIn) {
-            dispatch(
-                setLogin({
-                    user: loggedIn.user,
-                    token: loggedIn.token
-                })
-            );
-            toast.success('Logged in!');
-            navigate('/dashboard');
-
-        } else {
-            toast.error('wrong credentials, try again');
-        };
-
-    };
-
-    const handleFormSubmit = async (values, onSubmitProps) => {
-        if (isLogin) await login(values, onSubmitProps);
-        if (isRegister) await register(values, onSubmitProps);
-    };
-
     return (
-        <Formik
-            onSubmit={handleFormSubmit}
-            initialValues={isLogin ? initialLoginValues : initialRegisterValues}
-            validationSchema={isLogin ? loginSchema : registerSchema}
-        >
-            {({
-                values,
-                // errors,
-                // touched,
-                handleBlur,
-                handleChange,
-                handleSubmit,
-                resetForm,
-            }) => (
-                <div className="bg-gray-200 min-h-screen flex justify-center items-center">
-                    <form onSubmit={handleSubmit} className="bg-white p-16 rounded-lg shadow-md w-full md:w-1/2 lg:w-1/3">
-                        {isRegister && (
-                            <div className="mb-6">
-                                <input
-                                    className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none"
-                                    type="text"
-                                    placeholder="Username"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    name="username"
-                                    value={values.username}
-                                />
-                            </div>
-                        )}
-                        <div className="mb-6">
-                            <input
-                                className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none"
-                                type="email"
-                                placeholder="Email"
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                name="email"
-                                value={values.email}
-                            />
-                        </div>
-                        <div className="mb-6">
-                            <input
-                                className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none"
-                                type="password"
-                                placeholder="Password"
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                name="password"
-                                value={values.password}
-                            />
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <button className="bg-black text-white py-3 px-6 rounded focus:outline-none text-lg" type="submit">
-                                {isLogin ? 'Login' : 'Register'}
-                            </button>
-                            <button
-                                className="text-black hover:underline text-sm"
-                                type="button"
-                                onClick={() => {
-                                    setPageType(isLogin ? 'register' : 'login');
-                                    resetForm();
-                                }}
-                            >
-                                {isLogin ? "Don't have an account? Register here!" : 'Already have an account? Login here!'}
-                            </button>
-                        </div>
-                    </form>
+        <div className="bg-gray-200 min-h-screen flex justify-center items-center">
+            <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-16 rounded-lg shadow-md w-full md:w-1/2 lg:w-1/3">
+                {!isLogin && (
+                    <div className="mb-6">
+                        <input {...register('username')} placeholder="Username" className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none" />
+                        <p className="text-red-500 text-xs italic mt-2">{errors.username?.message}</p>
+                    </div>
+                )}
+                <div className="mb-6">
+                    <input {...register('email')} placeholder="Email" className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none" />
+                    <p className="text-red-500 text-xs italic mt-2">{errors.email?.message}</p>
                 </div>
-            )}
-        </Formik>
+                <div className="mb-6">
+                    <input {...register('password')} placeholder="Password" className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none" type="password" />
+                    <p className="text-red-500 text-xs italic mt-2">{errors.password?.message}</p>
+                </div>
+                <div className="flex justify-between items-center">
+                    <button type="submit" className="bg-black text-white py-3 px-6 rounded focus:outline-none text-lg">{isLogin ? 'Login' : 'Register'}</button>
+                    <button type="button" className="text-black hover:underline text-sm" onClick={() => setPageType(isLogin ? 'register' : 'login')}>{isLogin ? "Don't have an account? Register here!" : 'Already have an account? Login here!'}</button>
+                </div>
+            </form>
+        </div>
     );
 };
-
-export default Form;

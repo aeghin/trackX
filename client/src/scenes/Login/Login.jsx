@@ -1,4 +1,5 @@
-import Form from "./Form";
+// import Form from "./Form";
+import { Form } from "./Form";
 
 const Login = () => {
 
@@ -7,6 +8,6 @@ const Login = () => {
       <Form />
     </>
   )
-}
+};
 
 export default Login;
