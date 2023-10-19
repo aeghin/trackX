@@ -13,7 +13,7 @@ export const ProjectCard = ({ title, projectId }) => {
     const [isModalOpen, setIsModal] = useState(false);
 
     const handleDelete = async () => {
-        const response = await fetch(`http://localhost:3001/projects/${projectId}`,
+        const response = await fetch(`https://track-x-five.vercel.app/projects/${projectId}`,
             {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },

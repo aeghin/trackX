@@ -20,7 +20,7 @@ export const Issues = () => {
 
 
   const getIssues = async () => {
-    const response = await fetch(`http://localhost:3001/projects/${projectId}/issues`,
+    const response = await fetch(`https://track-x-five.vercel.app/projects/${projectId}/issues`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` }

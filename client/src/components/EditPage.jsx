@@ -23,7 +23,7 @@ export const EditPage = ({ issues, issueId, projectId }) => {
     };
 
     const updateIssueHandler = async () => {
-        const response = await fetch(`http://localhost:3001/projects/issues/${issueId}`, {
+        const response = await fetch(`https://track-x-five.vercel.app/projects/issues/${issueId}`, {
             method: "PUT",
             headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(editDetails)

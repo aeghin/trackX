@@ -11,7 +11,7 @@ export const Modal = ({ onClose, onProjectAdded }) => {
 
 
     const handleSubmit = async () => {
-        const response = await fetch("http://localhost:3001/projects/project",
+        const response = await fetch("https://track-x-five.vercel.app/projects/project",
             {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
