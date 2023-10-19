@@ -49,8 +49,8 @@ export const Form = () => {
             });
             const result = await res.json();
             // console.log(result);
-            reset();
             if (res.ok) {
+                reset();
                 if (isLogin) {
                     dispatch(setLogin(result));
                     toast.success('Logged in!');
@@ -66,6 +66,11 @@ export const Form = () => {
             console.error('An error occurred:', error);
             toast.error('An error occurred, please try again.');
         }
+    };
+    
+    const toggleFormType = () => {
+        setPageType(isLogin ? 'register' : 'login');
+        reset();
     };
 
     return (
@@ -87,7 +92,7 @@ export const Form = () => {
                 </div>
                 <div className="flex justify-between items-center">
                     <button type="submit" className="bg-black text-white py-3 px-6 rounded focus:outline-none text-lg">{isLogin ? 'Login' : 'Register'}</button>
-                    <button type="button" className="text-black hover:underline text-sm" onClick={() => setPageType(isLogin ? 'register' : 'login')}>{isLogin ? "Don't have an account? Register here!" : 'Already have an account? Login here!'}</button>
+                    <button type="button" className="text-black hover:underline text-sm" onClick={toggleFormType}>{isLogin ? "Don't have an account? Register here!" : 'Already have an account? Login here!'}</button>
                 </div>
             </form>
         </div>
