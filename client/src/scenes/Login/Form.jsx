@@ -42,7 +42,7 @@ const Form = () => {
     const register = async (values, onSubmitProps) => {
         try {
             const userResponse = await fetch(
-                'https://track-x-five.vercel.app/register',
+                'https://track-x-five.vercel.app/auth/register',
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -75,7 +75,7 @@ const Form = () => {
         //  } catch(err) {
 
         //  };
-        const loggedInResponse = await fetch('https://track-x-five.vercel.app/login',
+        const loggedInResponse = await fetch('https://track-x-five.vercel.app/auth/login',
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
