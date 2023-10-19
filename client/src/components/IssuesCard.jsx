@@ -11,7 +11,7 @@ export const IssuesCard = ({ title, projectId, issueId }) => {
 
     const handleDelete = async () => {
 
-        const response = await fetch(`https://track-x-five.vercel.app/projects/${projectId}/${issueId}`,
+        const response = await fetch(`http://localhost:3001/projects/${projectId}/${issueId}`,
             {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },

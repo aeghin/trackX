@@ -12,7 +12,7 @@ export const ProjectEdit = ({ onClose, projectId }) => {
 
     const handleSubmit = async () => {
 
-        const response = await fetch(`https://track-x-five.vercel.app/projects/${projectId}/name`, {
+        const response = await fetch(`http://localhost:3001/projects/${projectId}/name`, {
             method: "PUT",
             headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({ title }),
