@@ -5,12 +5,14 @@ import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { ProjectEdit } from './ProjectEdit';
 import { useState } from 'react';
+import { ConfirmModal } from './ConfirmModal';
 
 
 export const ProjectCard = ({ title, projectId }) => {
     const dispatch = useDispatch();
     const token = useSelector(state => state.token);
     const [isModalOpen, setIsModal] = useState(false);
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
     const handleDelete = async () => {
         const response = await fetch(`http://localhost:3001/projects/${projectId}`,
@@ -40,12 +42,13 @@ export const ProjectCard = ({ title, projectId }) => {
                 <button onClick={() => setIsModal(true)} className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-400 pr-2">
                     <FaRegEdit />
                 </button>
-                <button onClick={handleDelete}
+                <button onClick={() => setConfirmDelete(true)}
                     className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-500"
                 >
                     <FaTrashAlt />
                 </button>
             </div>
+            {confirmDelete && <ConfirmModal handleDelete={handleDelete} onClose={() => setConfirmDelete(false)} />}
             {isModalOpen && <ProjectEdit onClose={() => setIsModal(false)} projectId={projectId} />}
         </>
     )
