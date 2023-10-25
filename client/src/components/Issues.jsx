@@ -43,6 +43,8 @@ export const Issues = () => {
   const backlogIssues = issue[projectId]?.filter(iss => iss.status === 'Backlog') || [];
   const completedIssues = issue[projectId]?.filter(iss => iss.status === 'Completed') || [];
 
+  console.log(inProgressIssues, backlogIssues, completedIssues);
+
   return (
     <>
       <div className="min-h-screen flex">
@@ -67,19 +69,19 @@ export const Issues = () => {
             <div className="bg-red-300 p-4 rounded">
               <h3 className="text-xl font-bold mb-4">Backlog</h3>
               {backlogIssues.map(issueItem => (
-                <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} />
+                <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} createdDate={issueItem.createdAt} />
               ))}
             </div>
             <div className="bg-orange-300 p-4 rounded">
               <h3 className="text-xl font-bold mb-4">In-Progress</h3>
               {inProgressIssues.map(issueItem => (
-                <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} />
+                <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} createdDate={issueItem.createdAt} />
               ))}
             </div>
             <div className="bg-green-400 p-4 rounded">
               <h3 className="text-xl font-bold mb-4">Completed</h3>
               {completedIssues.map(issueItem => (
-                <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} />
+                <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} createdDate={issueItem.createdAt} />
               ))}
             </div>
           </div>
