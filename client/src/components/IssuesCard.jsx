@@ -36,7 +36,7 @@ export const IssuesCard = ({ title, projectId, issueId, createdDate }) => {
                 <Link className="flex-grow" to={`/projects/${projectId}/${issueId}`}>
                     <h3 className="text-xl font-semibold">{title}</h3>
                 </Link>
-                <div className="mr-12">
+                <div className="mr-24">
                     <p className='text-xs'>{formattedDate}</p>
                 </div>
             </div>

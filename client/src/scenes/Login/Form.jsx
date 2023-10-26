@@ -39,7 +39,7 @@ export const Form = () => {
     const onSubmit = async (data) => {
 
         try {
-            const url = `http://localhost:3001/auth/${isLogin ? 'login' : 'register'}`;
+            const url = `https://track-x-five.vercel.app/auth/${isLogin ? 'login' : 'register'}`;
             const res = await fetch(url, {
                 method: 'POST',
                 headers: {

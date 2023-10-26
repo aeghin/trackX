@@ -43,7 +43,7 @@ export const Issues = () => {
   const backlogIssues = issue[projectId]?.filter(iss => iss.status === 'Backlog') || [];
   const completedIssues = issue[projectId]?.filter(iss => iss.status === 'Completed') || [];
 
-  console.log(inProgressIssues, backlogIssues, completedIssues);
+
 
   return (
     <>
