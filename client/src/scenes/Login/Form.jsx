@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { setLogin } from 'state';
 import { toast } from 'sonner';
 
+
 const loginSchema = yup.object().shape({
     email: yup.string().email('Invalid email!').required('Required!'),
     password: yup.string().required('Required!'),
@@ -24,6 +25,7 @@ export const Form = () => {
     const dispatch = useDispatch();
     const isLogin = pageType === 'login';
 
+
     const {
         register,
         handleSubmit,
@@ -37,9 +39,9 @@ export const Form = () => {
     });
 
     const onSubmit = async (data) => {
-
+        console.log(data);
         try {
-            const url = `https://track-x-five.vercel.app/auth/${isLogin ? 'login' : 'register'}`;
+            const url = `http://localhost:3001/auth/${isLogin ? 'login' : 'register'}`;
             const res = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -48,7 +50,6 @@ export const Form = () => {
                 body: JSON.stringify(data),
             });
             const result = await res.json();
-            // console.log(result);
             if (res.ok) {
                 reset();
                 if (isLogin) {
@@ -67,7 +68,7 @@ export const Form = () => {
             toast.error('An error occurred, please try again.');
         }
     };
-    
+
     const toggleFormType = () => {
         setPageType(isLogin ? 'register' : 'login');
         reset();

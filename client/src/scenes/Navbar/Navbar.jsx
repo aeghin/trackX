@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { setLogout } from 'state';
 import { persistor } from 'index.js';
 
 
 const Navbar = () => {
     const user = useSelector((state) => state.user);
+    const location = useLocation();
     const dispatch = useDispatch();
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -58,9 +59,11 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <Link className="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" to="/login">
+                                {location.pathname !== "/login" && (<Link className="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" to="/login">
                                     Login
                                 </Link>
+
+                                )}
                             </>
                         )}
                     </div>
