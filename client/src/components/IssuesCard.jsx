@@ -27,7 +27,7 @@ export const IssuesCard = ({ title, projectId, issueId, createdDate }) => {
 
     };
 
-    const formattedDate = createdDate.slice(0, 10);
+    // const formattedDate = createdDate.slice(0, 10);
 
     return (
 
@@ -36,9 +36,6 @@ export const IssuesCard = ({ title, projectId, issueId, createdDate }) => {
                 <Link className="flex-grow" to={`/projects/${projectId}/${issueId}`}>
                     <h3 className="text-xl font-semibold">{title}</h3>
                 </Link>
-                <div className="mr-24">
-                    <p className='text-xs'>{formattedDate}</p>
-                </div>
             </div>
             <button onClick={handleDelete}
                 className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-500"

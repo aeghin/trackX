@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { useSelector } from "react-redux";
-
-
+import { GoProjectRoadmap } from 'react-icons/go';
+import { AiFillEdit } from 'react-icons/ai';
 export const Modal = ({ onClose, onProjectAdded }) => {
     const [projectName, setProjectName] = useState('');
     const token = useSelector(state => state.token);
@@ -33,7 +33,10 @@ export const Modal = ({ onClose, onProjectAdded }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
             <div className="bg-white p-8 rounded-lg w-96 relative">
                 <button onClick={onClose} className="absolute top-4 right-4 hover:text-red-600">X</button>
-                <h2 className="text-2xl mb-4">Create a New Project</h2>
+                <div className="flex items-center mb-4">
+                    <h2 className="text-2xl">Create a New Project</h2>
+                    <GoProjectRoadmap className="ml-2 text-2xl mt-1" />
+                </div>
                 <input
                     type="text"
                     className="border p-2 w-full mb-4"
@@ -43,10 +46,14 @@ export const Modal = ({ onClose, onProjectAdded }) => {
                 />
                 <button
                     onClick={handleSubmit}
-                    className="bg-gray-500 text-white p-2 hover:bg-indigo-500 rounded"
+                    className="bg-gray-500 text-white p-2 hover:bg-indigo-500 rounded flex items-center justify-between"
                 >
-                    Create
+                    <span>Create</span>
+                    <AiFillEdit className="ml-1" />
                 </button>
+
+
+
             </div>
         </div>
     )

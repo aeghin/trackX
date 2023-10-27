@@ -6,9 +6,13 @@ import { toast } from "sonner";
 export const ProjectEdit = ({ onClose, projectId }) => {
 
     const token = useSelector(state => state.token);
+    const project = useSelector(state => state.projects);
     const dispatch = useDispatch();
 
-    const [title, setTitle] = useState("");
+    const currentProject = project.find(proj => proj._id === projectId);
+    const projectTitle = currentProject?.title;
+
+    const [title, setTitle] = useState(projectTitle);
 
     const handleSubmit = async () => {
 
@@ -39,7 +43,7 @@ export const ProjectEdit = ({ onClose, projectId }) => {
                 <input
                     type="text"
                     className="border p-2 w-full mb-4"
-                    placeholder="new name"
+                    placeholder={projectTitle}
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
