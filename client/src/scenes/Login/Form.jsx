@@ -76,7 +76,10 @@ export const Form = () => {
 
     return (
         <div className="bg-gray-200 min-h-screen flex justify-center items-center">
-            <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-16 rounded-lg shadow-md w-full md:w-1/2 lg:w-1/3">
+            <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-16 rounded-lg shadow-md w-full md:w-1/2 lg:w-1/3 border border-indigo-200">
+                <div className='flex justify-center mb-6 py-2 px-2 rounded-lg bg-slate-200 font-semibold'>
+                    <h1 className='text-slate-800'>{isLogin ? "Sign in" : "Sign Up"} to continue</h1>
+                </div>
                 {!isLogin && (
                     <div className="mb-6">
                         <input {...register('username')} placeholder="Username" className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none" />
@@ -91,10 +94,10 @@ export const Form = () => {
                     <input {...register('password')} placeholder="Password" className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none" type="password" />
                     <p className="text-red-500 text-xs italic mt-2">{errors.password?.message}</p>
                 </div>
-                <div className="flex justify-between items-center">
-                    <button type="submit" className="bg-black text-white py-3 px-6 rounded focus:outline-none text-lg">{isLogin ? 'Login' : 'Register'}</button>
-                    <button type="button" className="text-black hover:underline text-sm" onClick={toggleFormType}>{isLogin ? "Don't have an account? Register here!" : 'Already have an account? Login here!'}</button>
-                </div>
+                
+                    <button type="submit" className=" w-full bg-black text-white py-3 px-6 hover:bg-indigo-500 rounded focus:outline-none text-lg">{isLogin ? 'Sign In' : 'Sign Up'}</button>
+                    <button type="button" className=" w-full text-black hover:underline text-sm" onClick={toggleFormType}>{isLogin ? "Don't have an account? Sign up here!" : 'Already have an account? Login here!'}</button>
+                
             </form>
         </div>
     );
