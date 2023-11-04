@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { useSelector } from "react-redux";
 import { GoProjectRoadmap } from 'react-icons/go';
 import { AiFillEdit } from 'react-icons/ai';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 export const Modal = ({ onClose, onProjectAdded }) => {
     const [projectName, setProjectName] = useState('');
     const token = useSelector(state => state.token);
@@ -32,7 +33,9 @@ export const Modal = ({ onClose, onProjectAdded }) => {
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
             <div className="bg-white p-8 rounded-lg w-96 relative">
-                <button onClick={onClose} className="absolute top-4 right-4 hover:text-red-600">X</button>
+                <button onClick={onClose} className="absolute top-4 right-4 hover:text-red-600">
+                    <AiOutlineCloseCircle />
+                </button>
                 <div className="flex items-center mb-4">
                     <h2 className="text-2xl">Create a New Project</h2>
                     <GoProjectRoadmap className="ml-2 text-2xl mt-1" />

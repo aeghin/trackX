@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addIssue } from "state";
 import { toast } from "sonner";
-
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 export const IssueModal = ({ onClose, projectId }) => {
 
     const user = useSelector(state => state.user);
@@ -43,7 +43,9 @@ export const IssueModal = ({ onClose, projectId }) => {
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
             <div className="bg-white p-8 rounded-lg w-96 relative">
-                <button onClick={onClose} className="absolute top-4 right-4 hover:text-red-600">X</button> {/* This button is inside the modal */}
+                <button onClick={onClose} className="absolute top-4 right-4 hover:text-red-600">
+                    <AiOutlineCloseCircle />
+                </button> 
                 <h2 className="text-2xl mb-4">Add a New Issue</h2>
                 <input
                     type="text"
