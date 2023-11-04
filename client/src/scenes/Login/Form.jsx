@@ -39,7 +39,7 @@ export const Form = () => {
     });
 
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
         try {
             const url = `http://localhost:3001/auth/${isLogin ? 'login' : 'register'}`;
             const res = await fetch(url, {

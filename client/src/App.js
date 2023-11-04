@@ -5,7 +5,7 @@ import Dashboard from './scenes/Dashboard/Dashboard';
 import { Issues } from 'components/Issues';
 import { useSelector } from 'react-redux';
 import Navbar from 'scenes/Navbar/Navbar';
-import { IssueDetails } from 'components/IssueDetails';
+// import { IssueDetails } from 'components/IssueDetails';
 
 import { Toaster } from 'sonner';
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <Route path="/dashboard" element={authenticated ? <Dashboard /> : <Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/projects/:projectId/issues" element={<Issues />} />
-          <Route path="/projects/:projectId/:issueId" element={<IssueDetails />} />
+          {/* <Route path="/projects/:projectId/:issueId" element={<IssueDetails />} /> */}
         </Routes>
       </BrowserRouter>
       <Toaster richColors position="bottom-center"/>

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { updateIssue } from "state";
 
 
-export const EditPage = ({ issues, issueId, projectId }) => {
-    const navigate = useNavigate();
+export const EditPage = ({ issues, issueId, projectId, closeModal }) => {
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const token = useSelector(state => state.token);
@@ -36,12 +36,12 @@ export const EditPage = ({ issues, issueId, projectId }) => {
         };
 
         dispatch(updateIssue({ projectId, issueId, updatedIssue: data }));
-        navigate(`/projects/${projectId}/issues`);
         toast.success('Issue updated');
+        closeModal()
     };
 
     return (
-        <div className="w-1/2 h-3/4 bg-white p-6 rounded-lg shadow-lg">
+        <div>
             <div className="mb-4">
                 <h3 className="text-lg font-medium">Title:</h3>
                 <input type="text" name="title" value={editDetails.title} className="border rounded w-full py-2 px-3 text-gray-700 leading-tight" onChange={handleChange} placeholder={issues.title} />

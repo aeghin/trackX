@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setLogout } from 'state';
 import { persistor } from 'index.js';
 
@@ -10,6 +10,7 @@ const Navbar = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
@@ -47,6 +48,7 @@ const Navbar = () => {
                                                 dispatch(setLogout());
                                                 persistor.purge().then(() => {
                                                     setDropdownOpen(false);
+                                                    navigate("/");
                                                 }).catch(error => {
                                                     console.error('Persistor purge error: ', error);
                                                 });

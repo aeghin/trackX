@@ -28,7 +28,7 @@ export const Issues = () => {
     )
 
     const data = await response.json();
-
+      // console.log(data);
     dispatch(setIssues({ projectId, issues: data }))
   };
 
@@ -40,7 +40,7 @@ export const Issues = () => {
 
 
   const inProgressIssues = issue[projectId]?.filter(iss => iss.status === 'In-Progress') || [];
-  const backlogIssues = issue[projectId]?.filter(iss => iss.status === 'Backlog') || [];
+  const backlogIssues = issue[projectId]?.filter(iss => iss.status === 'Back-log') || [];
   const completedIssues = issue[projectId]?.filter(iss => iss.status === 'Completed') || [];
 
 
@@ -55,7 +55,7 @@ export const Issues = () => {
                 <FaArrowLeft />
               </button>
               <h2 className="text-xl py-2 px-6 ml-2 rounded-lg bg-gray-300 font-semibold">
-                {projects.title}
+                {projects?.title}
               </h2>
             </div>
             <button
