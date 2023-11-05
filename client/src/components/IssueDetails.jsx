@@ -34,12 +34,12 @@ export const IssueDetails = ({ projectId, issueId, closeModal }) => {
               <h3 className="text-lg font-medium">Status:</h3>
               <p className="text-base text-gray-700">{issues.status}</p>
             </div>
-            <div className="flex justify-end">
-              <button onClick={() => setIsEditPage(true)} className="bg-red-400 py-2 px-6 rounded-lg shadow-md hover:bg-indigo-100">Edit</button>
+            <div className="flex">
+              <button onClick={() => setIsEditPage(true)} className="bg-indigo-100 py-2 px-6 rounded-lg shadow-md hover:bg-red-400">Edit</button>
             </div>
           </div>
           :
-          <EditPage issues={issues} issueId={issueId} projectId={projectId} closeModal={closeModal} />
+          <EditPage issues={issues} issueId={issueId} projectId={projectId} closeModal={closeModal} goBack={() => setIsEditPage(false)}/>
         }
       </div>
     </div>

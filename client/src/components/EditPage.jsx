@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { updateIssue } from "state";
 
 
-export const EditPage = ({ issues, issueId, projectId, closeModal }) => {
+export const EditPage = ({ issues, issueId, projectId, closeModal, goBack }) => {
     // const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -48,7 +48,7 @@ export const EditPage = ({ issues, issueId, projectId, closeModal }) => {
             </div>
             <div className="mb-4">
                 <h3 className="text-lg font-medium">Description:</h3>
-                <textarea name="description" value={editDetails.description} className="resize-y border rounded w-full py-2 px-3 text-gray-700 leading-tight" onChange={handleChange} placeholder={issues.description}></textarea>
+                <textarea name="description" value={editDetails.description} className="resize-y border rounded w-full py-4 px-3 text-gray-700 leading-tight" onChange={handleChange} placeholder={issues.description}></textarea>
             </div>
             <div className="mb-4">
                 <h3 className="text-lg font-medium">Status:</h3>
@@ -60,7 +60,8 @@ export const EditPage = ({ issues, issueId, projectId, closeModal }) => {
                 </select>
             </div>
             <div className="flex justify-end">
-                <button onClick={updateIssueHandler} className="bg-green-400 py-2 px-6 rounded-lg shadow-md hover:bg-indigo-100">Update Issue</button>
+                <button onClick={goBack} className="bg-indigo-100 p-2 px-6 mr-2 rounded-lg shadow-md hover:bg-red-400">Cancel</button>
+                <button onClick={updateIssueHandler} className="bg-indigo-100 p-2 px-6 rounded-lg shadow-md hover:bg-green-400">Update Issue</button>
             </div>
         </div>
     );
