@@ -54,7 +54,7 @@ export const EditPage = ({ issues, issueId, projectId, closeModal, goBack }) => 
                 <h3 className="text-lg font-medium">Status:</h3>
                 <select name="status" value={editDetails.status} onChange={handleChange} className="border rounded w-full py-2 px-3 text-gray-700 leading-tight">
                     <option value="" disabled>Select status</option>
-                    <option>Back-log</option>
+                    <option>Backlog</option>
                     <option>In-Progress</option>
                     <option>Completed</option>
                 </select>

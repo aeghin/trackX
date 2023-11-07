@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { addIssue } from "state";
 import { toast } from "sonner";
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { GoProjectRoadmap } from 'react-icons/go';
+import { AiFillEdit } from 'react-icons/ai';
+
 export const IssueModal = ({ onClose, projectId }) => {
 
     const user = useSelector(state => state.user);
@@ -28,8 +31,9 @@ export const IssueModal = ({ onClose, projectId }) => {
                 headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify(issueData),
             });
-
+            console.log(issueData);
         if (response.ok) {
+            
             const data = await response.json();
             dispatch(addIssue({ projectId, issue: data }));
         } else {
@@ -44,9 +48,12 @@ export const IssueModal = ({ onClose, projectId }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
             <div className="bg-white p-8 rounded-lg w-96 relative">
                 <button onClick={onClose} className="absolute top-4 right-4 hover:text-red-600">
-                    <AiOutlineCloseCircle />
-                </button> 
-                <h2 className="text-2xl mb-4">Add a New Issue</h2>
+                    <AiOutlineCloseCircle className="text-xl"/>
+                </button>
+                <div className="flex items-center mb-4">
+                    <h2 className="text-2xl">Add a New Issue</h2>
+                    <GoProjectRoadmap className="ml-2 text-2xl" />
+                </div>
                 <input
                     type="text"
                     name="title"
@@ -76,9 +83,10 @@ export const IssueModal = ({ onClose, projectId }) => {
                 </select>
                 <button
                     onClick={handleSubmit}
-                    className="bg-gray-500 text-white p-2 hover:bg-indigo-500 rounded"
+                    className="bg-gray-500 text-white p-2 hover:bg-indigo-500 rounded flex items-center justify-between"
                 >
-                    Add Issue
+                    <span>Add Issue</span>
+                    <AiFillEdit className="ml-1" />
                 </button>
             </div>
         </div>

@@ -28,7 +28,7 @@ export const Issues = () => {
     )
 
     const data = await response.json();
-      // console.log(data);
+      console.log(data);
     dispatch(setIssues({ projectId, issues: data }))
   };
 
@@ -40,7 +40,7 @@ export const Issues = () => {
 
 
   const inProgressIssues = issue[projectId]?.filter(iss => iss.status === 'In-Progress') || [];
-  const backlogIssues = issue[projectId]?.filter(iss => iss.status === 'Back-log') || [];
+  const backlogIssues = issue[projectId]?.filter(iss => iss.status === 'Backlog') || [];
   const completedIssues = issue[projectId]?.filter(iss => iss.status === 'Completed') || [];
 
 
