@@ -48,7 +48,7 @@ const Home = () => {
     };
     return (
         <>
-            <div className="bg-[#f1f5f9] flex flex-col justify-center items-center h-screen pb-36">
+            <div className="bg-[#f1f5f9] flex flex-col justify-center items-center h-96 border-b-4 border-indigo-100">
                 <div className="animate-swoop-in flex flex-col justify-center items-center">
                     <h1 className="text-4xl font-mono">
                         Experience TrackX today!
