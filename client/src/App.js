@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './scenes/Home/Home';
-import Login from './scenes/Login/Login'
+import { Form } from 'scenes/Login/Form';
 import Dashboard from './scenes/Dashboard/Dashboard';
 import { Issues } from 'components/Issues';
 import { useSelector } from 'react-redux';
@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={authenticated ? <Dashboard /> : <Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Form />} />
           <Route path="/projects/:projectId/issues" element={<Issues />} />
           {/* <Route path="/projects/:projectId/:issueId" element={<IssueDetails />} /> */}
         </Routes>
