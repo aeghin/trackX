@@ -44,15 +44,15 @@ export const EditPage = ({ issues, issueId, projectId, closeModal, goBack }) => 
         <div>
             <div className="mb-4">
                 <h3 className="text-lg font-medium">Title:</h3>
-                <input type="text" name="title" value={editDetails.title} className="border rounded w-full py-2 px-3 text-gray-700 leading-tight" onChange={handleChange} placeholder={issues.title} />
+                <input type="text" name="title" value={editDetails.title} className="border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight" onChange={handleChange} placeholder={issues.title} />
             </div>
             <div className="mb-4">
                 <h3 className="text-lg font-medium">Description:</h3>
-                <textarea name="description" value={editDetails.description} className="resize-y border rounded w-full py-4 px-3 text-gray-700 leading-tight" onChange={handleChange} placeholder={issues.description}></textarea>
+                <textarea name="description" value={editDetails.description} className="resize-y border border-gray-300 rounded w-full py-4 px-3 text-gray-700 leading-tight h-40" onChange={handleChange} placeholder={issues.description}></textarea>
             </div>
             <div className="mb-4">
                 <h3 className="text-lg font-medium">Status:</h3>
-                <select name="status" value={editDetails.status} onChange={handleChange} className="border rounded w-full py-2 px-3 text-gray-700 leading-tight">
+                <select name="status" value={editDetails.status} onChange={handleChange} className="border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight">
                     <option value="" disabled>Select status</option>
                     <option>Backlog</option>
                     <option>In-Progress</option>

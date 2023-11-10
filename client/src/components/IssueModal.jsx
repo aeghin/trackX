@@ -57,15 +57,15 @@ export const IssueModal = ({ onClose, projectId }) => {
                 <input
                     type="text"
                     name="title"
-                    className="border p-2 w-full mb-4"
+                    className="border p-2 w-full mb-4 rounded-md border-gray-300"
                     placeholder="title"
                     value={issueData.title}
                     onChange={handleChange}
                 />
-                <input
+                <textarea
                     type="text"
                     name="description"
-                    className="border p-2 w-full mb-4"
+                    className="border p-2 w-full mb-4 rounded-md h-40 border-gray-300"
                     placeholder="description"
                     value={issueData.description}
                     onChange={handleChange}
@@ -74,7 +74,7 @@ export const IssueModal = ({ onClose, projectId }) => {
                     name="status"
                     value={issueData.status}
                     onChange={handleChange}
-                    className="border p-2 w-full mb-4"
+                    className="border p-2 w-full mb-4 rounded-md border-gray-300"
                 >
                     <option value="" disabled>Select a status</option>
                     <option value="Backlog">Backlog</option>

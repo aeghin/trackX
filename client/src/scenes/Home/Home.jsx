@@ -21,8 +21,6 @@ const Home = () => {
 
     const onSubmit = async () => {
 
-
-
         try {
             const url = "http://localhost:3001/auth/login";
             const res = await fetch(url, {

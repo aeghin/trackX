@@ -1,12 +1,10 @@
 import { useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { EditPage } from "./EditPage";
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+
 export const IssueDetails = ({ projectId, issueId, closeModal }) => {
 
-  // const navigate = useNavigate();
-  // const { projectId, issueId } = useParams();
 
   const project = useSelector(state => state.issues[projectId]);
 
