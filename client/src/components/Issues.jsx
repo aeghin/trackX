@@ -28,7 +28,7 @@ export const Issues = () => {
     )
 
     const data = await response.json();
-      console.log(data);
+      // console.log(data);
     dispatch(setIssues({ projectId, issues: data }))
   };
 

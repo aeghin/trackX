@@ -2,6 +2,8 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { EditPage } from "./EditPage";
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import moment from "moment";
+
 
 export const IssueDetails = ({ projectId, issueId, closeModal }) => {
 
@@ -11,6 +13,10 @@ export const IssueDetails = ({ projectId, issueId, closeModal }) => {
   const issues = project.find(issue => issue._id === issueId);
 
   const [isEditPage, setIsEditPage] = useState(false);
+
+  const issueDate = issues.createdAt;
+  
+  const daysAgo = moment(issueDate).fromNow();
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -31,6 +37,9 @@ export const IssueDetails = ({ projectId, issueId, closeModal }) => {
             <div className="mb-4">
               <h3 className="text-lg font-medium">Status:</h3>
               <p className="text-base text-gray-700">{issues.status}</p>
+            </div>
+            <div className="mb-4">
+              <h3 className="text-m font-medium">Created: <span className="text-indigo-700">{daysAgo}</span></h3>
             </div>
             <div className="flex">
               <button onClick={() => setIsEditPage(true)} className="bg-indigo-100 py-2 px-6 rounded-lg shadow-md hover:bg-red-400">Edit</button>
