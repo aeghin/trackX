@@ -1,31 +1,31 @@
 import image from '../../assets/Dashboard.png';
-
+import issueImg from '../../assets/IssueDetails.png'
 export const FeatureSection = () => {
     return (
-        <div className="bg-white flex flex-col lg:flex-row justify-between items-stretch p-8">
-            <div className="w-1/2 h-1/4">
-                <h2 className="text-xl font-semibold mb-4">Manage projects with ease.</h2>
-                <ul className="space-y-4">
+        <div className="h-screen bg-white flex flex-col lg:flex-row justify-center items-center p-8 space-y-8 lg:space-y-0 lg:space-x-8">
+            <div className="flex flex-col justify-center items-start lg:items-center w-full lg:w-1/2 h-full">
+                <h2 className="text-4xl font-semibold text-gray-800 mb-12">Manage projects with <span className='text-indigo-600'>ease.</span></h2>
+                <ul className="text-xl space-y-6 text-gray-600">
                     <li>
-                        <strong>Create Projects:</strong> Kickstart your new ventures and outline your objectives and milestones.
+                        <strong className='text-indigo-600'>Create Projects:</strong> Kickstart your new ventures and outline your objectives and milestones.
                     </li>
                     <li>
-                        <strong>Add Issues:</strong> Identify challenges and tasks associated with each project.
+                        <strong className='text-indigo-600'>Add Issues:</strong> Identify challenges and tasks associated with each project.
                     </li>
                     <li>
-                        <strong>Track by Status:</strong> Organize and monitor your tasks as they progress from 'To-Do' to 'In Progress' to 'Complete'.
+                        <strong className='text-indigo-600'>Track by Status:</strong> Organize and monitor your tasks as they progress from 'To-Do' to 'In Progress' to 'Complete'.
                     </li>
                     <li>
-                        <strong>Easy Management:</strong> Add or remove projects and issues with a user-friendly interface.
+                        <strong className='text-indigo-600'>Easy Management:</strong> Add or remove projects and issues with a user-friendly interface.
                     </li>
                     <li>
-                        <strong>Centralized Tracking:</strong> Have a single, organized space to view all your ongoing projects and their associated tasks.
+                        <strong className='text-indigo-600'>Centralized Tracking:</strong> Have a single, organized space to view all your ongoing projects and their associated tasks.
                     </li>
                 </ul>
             </div>
-            <div className="lg:w-1/2 mt-8 lg:mt-12">
-
-                <img src={image} alt="Visual representation of features" className="w-full h-40 rounded-lg shadow-md object-cover border-b-4 border-indigo-300" />
+            <div className="w-full lg:w-1/2 flex flex-col justify-center items-center space-y-4">
+                <img src={image} alt="Visual representation of features" className="max-w-full h-auto rounded-lg shadow-lg object-cover border-2 border-indigo-300 hover:shadow-xl transition-shadow duration-300" />
+                <img src={issueImg} alt="Visual representation of features" className="max-w-full h-auto rounded-lg shadow-lg object-cover border-2 border-indigo-300 hover:shadow-xl transition-shadow duration-300" />
             </div>
         </div>
     );

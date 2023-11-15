@@ -50,6 +50,7 @@ export const Form = () => {
                 body: JSON.stringify(data),
             });
             const result = await res.json();
+
             if (res.ok) {
                 reset();
                 if (isLogin) {
@@ -62,7 +63,7 @@ export const Form = () => {
                 }
             } else {
                 toast.error('Wrong credentials, try again.');
-            }
+            };
         } catch (error) {
             console.error('An error occurred:', error);
             toast.error('An error occurred, please try again.');
@@ -94,10 +95,10 @@ export const Form = () => {
                     <input {...register('password')} placeholder="Password" className="w-full p-4 text-lg border rounded focus:border-indigo-400 focus:outline-none" type="password" />
                     <p className="text-red-500 text-xs italic mt-2">{errors.password?.message}</p>
                 </div>
-                
-                    <button type="submit" className=" w-full bg-black text-white py-3 px-6 hover:bg-indigo-500 rounded focus:outline-none text-lg">{isLogin ? 'Sign In' : 'Sign Up'}</button>
-                    <button type="button" className=" w-full text-black hover:underline text-sm" onClick={toggleFormType}>{isLogin ? "Don't have an account? Sign up here!" : 'Already have an account? Login here!'}</button>
-                
+
+                <button type="submit" className=" w-full bg-black text-white py-3 px-6 hover:bg-indigo-500 rounded focus:outline-none text-lg">{isLogin ? 'Sign In' : 'Sign Up'}</button>
+                <button type="button" className=" w-full text-black hover:underline text-sm" onClick={toggleFormType}>{isLogin ? "Don't have an account? Sign up here!" : 'Already have an account? Login here!'}</button>
+
             </form>
         </div>
     );

@@ -22,22 +22,22 @@ const Navbar = () => {
     const authenticated = Boolean(useSelector((state) => state.token));
 
     return (
-        <nav className="bg-white shadow-lg border-b-4 border-indigo-100">
+        <nav className="bg-white shadow-lg border-b-4 border-indigo-200">
             <div className="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
                 <div className="flex justify-between items-center animate-swoop-in-left">
                     <Link to={authenticated ? "/dashboard" : "/"} className="text-2xl font-bold text-gray-800">
                         TrackX
                     </Link>
-                    <span className="ml-2 text-xs text-gray-600 italic">- Your Path, Clarified</span>
+                    <span className="ml-2 text-xs text-gray-600 italic">- Your Path, <span className='text-indigo-600'>Clarified</span></span>
                 </div>
                 <div className="md:flex items-center animate-swoop-in-right">
                     <div className="flex flex-col md:flex-row md:mx-6">
                         {authenticated ? (
                             <>
-                                { project.length !== 0 ? <Link className="my-1 px-4 py-1 bg-indigo-100 rounded text-sm text-gray-700 font-medium hover:bg-indigo-200 md:mx-4 md:my-0" to="/dashboard">
+                                {project.length !== 0 ? <Link className="my-1 px-4 py-1 bg-indigo-100 rounded text-sm text-gray-700 font-medium hover:bg-indigo-200 md:mx-4 md:my-0" to="/dashboard">
                                     Dashboard
                                 </Link>
-                                : null
+                                    : null
                                 }
                                 <div className="relative">
                                     {/* User Icon */}
