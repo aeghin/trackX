@@ -15,8 +15,8 @@ const Home = () => {
     };
 
     const guest = {
-        email: 'test@test.com',
-        password: 'test1234'
+        email: process.env.REACT_APP_EMAIL,
+        password: process.env.REACT_APP_PW
     }
 
     const dispatch = useDispatch();
