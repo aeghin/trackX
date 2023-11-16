@@ -22,21 +22,22 @@ export const extend = {
   },
   keyframes: {
     swoopIn: {
-      '0%': { opacity: '0', transform: 'translateY(100%)' },
-      '100%': { opacity: '1', transform: 'translateY(0)' },
+      '0%': { opacity: '0', transform: 'translate3d(0, 100%, 0)' },
+      '50%': { opacity: '0.5', transform: 'translate3d(0, -10%, 0)' },
+      '100%': { opacity: '1', transform: 'translate3d(0, 0, 0)' },
     },
-    swoopInLeft: {  // new keyframe
+    swoopInLeft: {
       '0%': { opacity: '0', transform: 'translateX(-100%)' },
       '100%': { opacity: '1', transform: 'translateX(0)' },
     },
-    swoopInRight: {  // new keyframe
+    swoopInRight: {
       '0%': { opacity: '0', transform: 'translateX(100%)' },
       '100%': { opacity: '1', transform: 'translateX(0)' },
-    }, 
+    },
   },
 };
 
-// Finally, export the complete configuration
+
 export default {
   content,
   plugins,
