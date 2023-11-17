@@ -20,7 +20,7 @@ app.use(cors());
 
 // ROUTES
 app.get('/', (req, res) => {
-  res.send('Hey this is my API running 🥳');
+  res.json({ message: 'Hey this is my API running 🥳' });
 });
 app.use('/auth', authRoutes);
 app.use('/projects', projectRoutes);
@@ -37,4 +37,4 @@ mongoose
   })
   .catch((error) => console.error('MongoDB Connection Error:', error));
 
-module.exports = app;
+export default app;
