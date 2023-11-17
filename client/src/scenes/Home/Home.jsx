@@ -73,13 +73,8 @@ const Home = () => {
   }, []);
 
   const sendRequest = async () => {
-    const url = process.env.API_URL;
-    const res = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const url = process.env.REACT_APP_API_URL;
+    const res = await fetch(url);
     const response = await res.json();
     console.log(response);
   };
