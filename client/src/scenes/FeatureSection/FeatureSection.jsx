@@ -1,5 +1,6 @@
 import image from '../../assets/Dashboard.png';
 import issueImg from '../../assets/IssueDetails.png'
+
 export const FeatureSection = () => {
     return (
         <div className="h-screen bg-white flex flex-col lg:flex-row justify-center items-center p-8 space-y-8 lg:space-y-0 lg:space-x-8">
