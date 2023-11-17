@@ -73,7 +73,7 @@ const Home = () => {
   }, []);
 
   const sendRequest = async () => {
-    const url = 'http://localhost:3001';
+    const url = process.env.API_URL;
     const res = await fetch(url, {
       method: 'GET',
       headers: {
