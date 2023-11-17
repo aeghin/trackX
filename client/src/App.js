@@ -11,20 +11,19 @@ import { Toaster } from 'sonner';
 function App() {
 
   const authenticated = Boolean(useSelector((state) => state.token));
-  
+
   return (
     <div className="App">
       <BrowserRouter>
-          <Navbar />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={authenticated ? <Dashboard /> : <Home />} />
           <Route path="/login" element={<Form />} />
-          <Route path="/projects/:projectId/issues" element={<Issues />} />
-          {/* <Route path="/projects/:projectId/:issueId" element={<IssueDetails />} /> */}
+          <Route path="/projects/:projectId/issues" element={authenticated ? <Issues /> : <Home />} />
         </Routes>
       </BrowserRouter>
-      <Toaster richColors position="bottom-center"/>
+      <Toaster richColors position="bottom-center" />
     </div>
   );
 };

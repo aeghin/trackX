@@ -70,9 +70,17 @@ const Home = () => {
         };
     }, []);
 
+    const sendRequest = async () => {
+        const url = process.env.REACT_APP_API_URL;
+        const res = await fetch(url);
+        const response = await res.json();
+        console.log(response);
+    };
+
     return (
 
         <>
+            <button onClick={sendRequest}>Send request to backend</button>
             <FeatureSection />
             <div className="relative flex flex-col justify-center items-center h-screen border-b-4 border-t-4 border-indigo-200 bg-cover bg-center"
                 style={{ backgroundImage: `url(${bgImage})` }}>
