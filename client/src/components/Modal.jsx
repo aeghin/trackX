@@ -12,7 +12,7 @@ export const Modal = ({ onClose, onProjectAdded }) => {
 
 
     const handleSubmit = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/project`,
+        const response = await fetch(`${process.env.REACT_APP_API_URL}projects/project`,
             {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },

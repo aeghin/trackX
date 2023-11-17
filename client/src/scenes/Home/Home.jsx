@@ -24,7 +24,7 @@ const Home = () => {
     const onSubmit = async () => {
 
         try {
-            const url = `${process.env.REACT_APP_API_URL}/auth/login`
+            const url = `${process.env.REACT_APP_API_URL}auth/login`
             const res = await fetch(url, {
                 method: 'POST',
                 headers: {

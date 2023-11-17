@@ -25,7 +25,7 @@ export const IssueModal = ({ onClose, projectId }) => {
     };
 
     const handleSubmit = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${projectId}/issue`,
+        const response = await fetch(`${process.env.REACT_APP_API_URL}projects/${projectId}/issue`,
             {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },

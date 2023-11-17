@@ -20,7 +20,7 @@ export const Issues = () => {
 
 
   const getIssues = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${projectId}/issues`,
+    const response = await fetch(`${process.env.REACT_APP_API_URL}projects/${projectId}/issues`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` }

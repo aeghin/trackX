@@ -15,7 +15,7 @@ export const ProjectCard = ({ title, projectId }) => {
     const [confirmDelete, setConfirmDelete] = useState(false);
 
     const handleDelete = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${projectId}`,
+        const response = await fetch(`${process.env.REACT_APP_API_URL}projects/${projectId}`,
             {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },

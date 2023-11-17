@@ -24,7 +24,7 @@ const Dashboard = () => {
     const userId = user._id;
 
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/projects/${userId}`,
+    const response = await fetch(`${process.env.REACT_APP_API_URL}projects/projects/${userId}`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

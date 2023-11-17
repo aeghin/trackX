@@ -23,7 +23,7 @@ export const EditPage = ({ issues, issueId, projectId, closeModal, goBack }) => 
     };
 
     const updateIssueHandler = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/issues/${issueId}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}projects/issues/${issueId}`, {
             method: "PUT",
             headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(editDetails)
