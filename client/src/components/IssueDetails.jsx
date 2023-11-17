@@ -19,10 +19,10 @@ export const IssueDetails = ({ projectId, issueId, closeModal }) => {
 
   useEffect(() => {
     const calculatedTimeAgo = moment(issueDate).fromNow();
-    setTimeAgo(calculatedTimeAgo); 
+    setTimeAgo(calculatedTimeAgo);
 
     const daysAgo = calculatedTimeAgo.includes("day") ? parseInt(calculatedTimeAgo.split(' ')[0]) : 0;
-    
+
     if (daysAgo > 3) {
       setChangeColor(true);
     } else {
@@ -30,7 +30,7 @@ export const IssueDetails = ({ projectId, issueId, closeModal }) => {
     }
   }, [issueDate]);
 
-  
+
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -54,7 +54,7 @@ export const IssueDetails = ({ projectId, issueId, closeModal }) => {
             </div>
             <div className="mb-4">
               <div className="bg-gray-200 py-2 px-2 rounded shadow-md text-center">
-                <h3 className="text-m font-medium">Created: <span className={ changeColor ? "text-red-700" : "text-green-700"}>{timeAgo}</span></h3>
+                <h3 className="text-m font-medium">Created: <span className={changeColor ? "text-red-700" : "text-green-700"}>{timeAgo}</span></h3>
               </div>
             </div>
             <div className="flex justify-end">

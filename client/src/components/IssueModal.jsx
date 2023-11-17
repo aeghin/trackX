@@ -25,15 +25,15 @@ export const IssueModal = ({ onClose, projectId }) => {
     };
 
     const handleSubmit = async () => {
-        const response = await fetch(`http://localhost:3001/projects/${projectId}/issue`,
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${projectId}/issue`,
             {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify(issueData),
             });
-            console.log(issueData);
+        console.log(issueData);
         if (response.ok) {
-            
+
             const data = await response.json();
             dispatch(addIssue({ projectId, issue: data }));
         } else {
@@ -48,7 +48,7 @@ export const IssueModal = ({ onClose, projectId }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
             <div className="bg-white p-8 rounded-lg w-96 relative">
                 <button onClick={onClose} className="absolute top-4 right-4 hover:text-red-600">
-                    <AiOutlineCloseCircle className="text-xl"/>
+                    <AiOutlineCloseCircle className="text-xl" />
                 </button>
                 <div className="flex items-center mb-4">
                     <h2 className="text-2xl">Add a New Issue</h2>

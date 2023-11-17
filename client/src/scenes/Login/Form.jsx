@@ -41,7 +41,7 @@ export const Form = () => {
     const onSubmit = async (data) => {
         // console.log(data);
         try {
-            const url = `http://localhost:3001/auth/${isLogin ? 'login' : 'register'}`;
+            const url = `${process.env.REACT_APP_API_URL}/auth/${isLogin ? 'login' : 'register'}`;
             const res = await fetch(url, {
                 method: 'POST',
                 headers: {

@@ -19,7 +19,7 @@ export const ProjectEdit = ({ onClose, projectId }) => {
 
     const handleSubmit = async () => {
 
-        const response = await fetch(`http://localhost:3001/projects/${projectId}/name`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${projectId}/name`, {
             method: "PUT",
             headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({ title }),
