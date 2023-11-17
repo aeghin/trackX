@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { addProject, setProjects } from "state";
 import { ProjectCard } from "components/ProjectCard.jsx";
 import { Modal } from "components/Modal.jsx";
+import { FaRegFolder } from 'react-icons/fa';
+
 
 // import { FaArrowRight, FaArrowLeft, FaProjectDiagram, FaCog } from 'react-icons/fa';
 
@@ -16,7 +18,7 @@ const Dashboard = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const user = useSelector(state => state.user);
 
-  
+
   const getProjects = async () => {
 
     const userId = user._id;
@@ -49,7 +51,7 @@ const Dashboard = () => {
         {/* Main Content */}
         <div className="w-full p-8 bg-gray-100">
           {projects.length === 0 ? (
-           
+
             <div className="flex flex-col items-center pb-32 justify-center h-screen">
               <div className="rounded-lg border p-12 bg-slate-200 text-center w-1/2">
                 <p className="text-4xl mb-4">Start a project</p>
@@ -61,10 +63,15 @@ const Dashboard = () => {
               </div>
             </div>
           ) : (
-            
+
             <>
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl py-2 px-6 rounded-lg bg-gray-300 font-semibold">PROJECTS</h2>
+                <div className="flex">
+                  <div className="flex items-center text-xl py-2 px-6 rounded-lg bg-gray-300 font-semibold">
+                    <h2>PROJECTS</h2>
+                    <FaRegFolder className="ml-2" />
+                  </div>
+                </div>
                 <button
                   onClick={() => setModalOpen(true)}
                   className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
