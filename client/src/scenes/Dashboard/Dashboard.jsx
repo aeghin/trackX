@@ -48,7 +48,7 @@ const Dashboard = () => {
 
       <div className="min-h-screen flex">
 
-        
+
         <div className="w-full p-8 bg-gray-100">
           {projects.length === 0 ? (
 

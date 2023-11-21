@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+
+// Issue models for database w/ user reference
+
 const IssueSchema = new mongoose.Schema({
     title: {
         type: String,

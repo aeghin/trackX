@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+// Porject model w/ user, issues reference
+
 const ProjectSchema = new mongoose.Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
