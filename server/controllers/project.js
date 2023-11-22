@@ -12,8 +12,6 @@ export const createProject = async (req, res) => {
 
         // destructuring request body to get user and title of project.
         const { user_id, title } = req.body;
-        // getting the user - not sure i need it
-
 
         const user = await User.findById(user_id);
         if (!user) {

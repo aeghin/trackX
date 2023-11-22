@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { GoProjectRoadmap } from 'react-icons/go';
 import { AiFillEdit } from 'react-icons/ai';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
-export const Modal = ({ onClose, onProjectAdded }) => {
+import { addProject } from "state";
+
+export const Modal = ({ onClose }) => {
+
     const [projectName, setProjectName] = useState('');
     const token = useSelector(state => state.token);
     const user = useSelector(state => state.user);
     const user_Id = user._id;
+    const dispatch = useDispatch();
+
 
 
     const handleSubmit = async () => {
@@ -21,8 +26,8 @@ export const Modal = ({ onClose, onProjectAdded }) => {
 
         if (response.ok) {
             const data = await response.json();
-            // console.log(data);
-            onProjectAdded(data);
+
+            dispatch(addProject(data));
         } else {
             console.log('Something went wrong:', await response.json());
         };

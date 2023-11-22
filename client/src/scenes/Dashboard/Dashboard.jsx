@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addProject, setProjects } from "state";
+import { setProjects } from "state";
 import { ProjectCard } from "components/ProjectCard.jsx";
 import { Modal } from "components/Modal.jsx";
 import { FaRegFolder } from 'react-icons/fa';
@@ -38,10 +38,7 @@ const Dashboard = () => {
   useEffect(() => {
     getProjects();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  // console.log(projects.data);
-  const handleProjectAdded = (newProject) => {
-    dispatch(addProject(newProject))
-  };
+  
 
   return (
     <>
@@ -87,7 +84,7 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-      {isModalOpen && <Modal onProjectAdded={handleProjectAdded} onClose={() => setModalOpen(false)} />}
+      {isModalOpen && <Modal onClose={() => setModalOpen(false)} />}
     </>
   )
 };
