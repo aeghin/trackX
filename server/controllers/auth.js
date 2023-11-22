@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 export const register = async (req, res) => {
     try {
 
+        // getting username, password, email from frontend request.
         const { username, email, password } = req.body;
 
         const salt = await bcrypt.genSalt();

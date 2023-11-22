@@ -1,5 +1,9 @@
 import express from 'express';
+
+// all project controllers
 import { createIssue, createProject, deleteIssue, deleteProjectWithIssues, getAllProjects, getAllIssuesByProject, updateIssue, updateProjectName } from '../controllers/project.js';
+
+// middleware for auth
 import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();

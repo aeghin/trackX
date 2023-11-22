@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+//user model with project ref.
+
+
 const UserSchema = new mongoose.Schema({
     username: {
         type: String,

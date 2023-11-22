@@ -20,13 +20,9 @@ app.use(cors());
 
 // ROUTES
 
-
 app.use("/auth", authRoutes);
 app.use("/projects", projectRoutes);
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Hey this is my API running 🥳' });
-});
 
 const PORT = process.env.PORT || 6001;
 
