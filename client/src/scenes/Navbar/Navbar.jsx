@@ -25,10 +25,10 @@ const Navbar = () => {
         <nav className="bg-gray-100 shadow-lg border-b-4 border-indigo-200">
             <div className="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
                 <div className="flex justify-between items-center animate-swoop-in-left">
-                    <Link to={authenticated ? "/dashboard" : "/"} className="text-2xl font-bold text-gray-800">
+                    <Link to={authenticated ? "/dashboard" : "/"} className="text-3xl font-bold text-gray-800">
                         TrackX
                     </Link>
-                    <span className="ml-2 text-xs text-gray-600 italic">- Your Path, <span className='text-indigo-600'>Clarified</span></span>
+                    <span className="ml-2 text-sm text-gray-600 italic">- Your Path, <span className='text-indigo-600'>Clarified</span></span>
                 </div>
                 <div className="md:flex items-center animate-swoop-in-right">
                     <div className="flex flex-col md:flex-row md:mx-6">
@@ -64,7 +64,7 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                {location.pathname !== "/login" && (<Link className="my-1 text-sm text-gray-700 font-medium rounded hover:bg-indigo-100 hover:text-indigo-600 py-2 px-4 md:mx-4 md:my-0" to="/login">
+                                {location.pathname !== "/login" && (<Link className="my-1 text-md text-gray-700 font-medium rounded hover:bg-indigo-100 hover:text-indigo-600 py-2 px-4 md:mx-4 md:my-0" to="/login">
                                     Login
                                 </Link>
 
