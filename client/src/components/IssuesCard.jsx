@@ -10,6 +10,7 @@ export const IssuesCard = ({ title, projectId, issueId }) => {
     const dispatch = useDispatch();
     const token = useSelector(state => state.token);
     const [isModal, setIsModal] = useState(false);
+
     const handleDelete = async () => {
 
         const response = await fetch(`${process.env.REACT_APP_API_URL}projects/${projectId}/${issueId}`,

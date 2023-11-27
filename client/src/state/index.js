@@ -26,6 +26,7 @@ export const globalSlice = createSlice({
         },
         setIssues: (state, action) => {
             const { projectId, issues } = action.payload;
+            
             state.issues[projectId] = issues;
         },
         addProject: (state, action) => {
