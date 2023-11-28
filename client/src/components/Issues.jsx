@@ -5,6 +5,7 @@ import { setIssues } from "state";
 import { IssuesCard } from "./IssuesCard";
 import { IssueModal } from "./IssueModal";
 import { FaArrowLeft } from "react-icons/fa";
+import { BsFileEarmarkText } from "react-icons/bs";
 
 
 
@@ -54,8 +55,9 @@ export const Issues = () => {
               <button onClick={() => navigate('/dashboard')} className="hover:text-indigo-500 p-2 rounded" >
                 <FaArrowLeft />
               </button>
-              <h2 className="text-xl py-2 px-6 ml-2 rounded-lg bg-gray-300 font-semibold">
+              <h2 className="flex items-center text-xl py-2 px-6 ml-2 rounded-lg bg-gray-300 font-semibold">
                 {projects?.title}
+                <BsFileEarmarkText className="ml-2"/>
               </h2>
             </div>
             <button
