@@ -7,11 +7,9 @@
 - Built with React, MongoDB, Express, Redux Toolkit.
 - Assign Issues to your projects in one-click.
 - Working on the issue? Easily change the status. 
-- 
--
--
--
--
+- React Hook Form.
+- Yup validation schema.
+- Simple UI built w/ TailwindCSS.
 
 ## License
 
