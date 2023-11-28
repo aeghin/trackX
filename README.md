@@ -9,7 +9,7 @@
 - Working on the issue? Easily change the status. 
 - React Hook Form.
 - Yup validation schema.
-- Simple UI built w/ TailwindCSS.
+- UI styled w/ TailwindCSS.
 
 ## License
 
