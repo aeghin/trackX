@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={authenticated ? <Dashboard /> : <Home />} />
           <Route path="/dashboard" element={authenticated ? <Dashboard /> : <Home />} />
           <Route path="/login" element={<Form />} />
           <Route path="/projects/:projectId/issues" element={authenticated ? <Issues /> : <Home />} />

@@ -39,6 +39,8 @@ const Dashboard = () => {
     getProjects();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
+  const hasProjects = projects.length === 0;
+
 
   return (
     <>
@@ -47,7 +49,7 @@ const Dashboard = () => {
 
 
         <div className="w-full p-8 bg-gray-100">
-          {projects.length === 0 ? (
+          {hasProjects ? (
 
             <div className="flex flex-col items-center pb-32 justify-center h-screen">
               <div className="rounded-lg border p-12 bg-slate-200 text-center w-1/2">
