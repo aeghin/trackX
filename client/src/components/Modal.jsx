@@ -59,9 +59,6 @@ export const Modal = ({ onClose }) => {
                     <span>Create</span>
                     <AiFillEdit className="ml-1" />
                 </button>
-
-
-
             </div>
         </div>
     )

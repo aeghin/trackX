@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { setLogin } from 'state';
 import { toast } from "sonner";
 import { FeatureSection } from "scenes/FeatureSection/FeatureSection";
-import { Footer } from "scenes/Footer/Footer";
 import { useRef, useEffect } from "react";
 import bgImage from '../../assets/hero.jpg';
 
@@ -92,8 +91,6 @@ const Home = () => {
                     </button>
                 </div>
             </div>
-
-            <Footer />
         </>
     );
 };
