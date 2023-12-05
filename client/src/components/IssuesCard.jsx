@@ -33,7 +33,7 @@ export const IssuesCard = ({ title, projectId, issueId }) => {
 
     return (
         <>
-            <div className="flex justify-between items-center bg-white p-4 mb-2 rounded-lg shadow-lg transition duration-600 ease-in-out transform hover:-translate-y-1 hover:scale-100 hover:bg-gray-100">
+            <div className="flex justify-between items-center bg-white p-4 mb-3 rounded-lg shadow-lg transition duration-600 ease-in-out transform hover:-translate-y-1 hover:scale-100 hover:bg-gray-100">
                 <div className="flex flex-grow items-center">
                     <button onClick={() => setIsModal(true)} className="flex-grow">
                         <h3 className="text-xl font-semibold">{title}</h3>

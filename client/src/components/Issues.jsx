@@ -6,7 +6,9 @@ import { IssuesCard } from "./IssuesCard";
 import { IssueModal } from "./IssueModal";
 import { FaArrowLeft } from "react-icons/fa";
 import { BsFileEarmarkText } from "react-icons/bs";
-
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { GiTimeTrap } from "react-icons/gi";
+import { BsCollection } from "react-icons/bs";
 
 
 export const Issues = () => {
@@ -72,19 +74,28 @@ export const Issues = () => {
               <div className="grid grid-cols-3 gap-4 mt-8 items-start content-start">
 
                 <div className="bg-red-300 p-4 rounded">
-                  <h3 className="text-xl font-bold mb-4">Backlog</h3>
+                  <div className="flex">
+                    <h3 className="text-xl font-bold mb-4 mr-2">Backlog</h3>
+                    <BsCollection className="w-6 h-6 mt-0.5" />
+                  </div>
                   {backlogIssues.map(issueItem => (
                     <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} createdDate={issueItem.createdAt} />
                   ))}
                 </div>
                 <div className="bg-orange-300 p-4 rounded">
-                  <h3 className="text-xl font-bold mb-4">In-Progress</h3>
+                  <div className="flex">
+                    <h3 className="text-xl font-bold mb-4 mr-2.5">In-Progress</h3>
+                    <GiTimeTrap className="w-6 h-6 mt-0.5" />
+                  </div>
                   {inProgressIssues.map(issueItem => (
                     <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} createdDate={issueItem.createdAt} />
                   ))}
                 </div>
                 <div className="bg-green-400 p-4 rounded">
-                  <h3 className="text-xl font-bold mb-4">Completed</h3>
+                  <div className="flex">
+                    <h3 className="text-xl font-bold mb-4 mr-2">Completed</h3>
+                    <IoMdCheckmarkCircleOutline className="w-6 h-6 mt-0.5" />
+                  </div>
                   {completedIssues.map(issueItem => (
                     <IssuesCard key={issueItem._id} title={issueItem.title} projectId={projectId} issueId={issueItem._id} createdDate={issueItem.createdAt} />
                   ))}
