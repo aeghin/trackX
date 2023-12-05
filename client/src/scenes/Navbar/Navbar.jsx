@@ -56,7 +56,7 @@ const Navbar = () => {
                                             console.error('Persistor purge error: ', error);
                                         });
                                     }}
-                                    className="my-1 mx-2 px-6 py-2 bg-red-500 text-white text-md rounded border border-gray-300 hover:bg-red-600 transition duration-300"
+                                    className="my-1 mx-2 px-6 py-2 text-indigo-600 text-md rounded border border-gray-300 hover:bg-slate-300 hover:text-black transition duration-300"
                                 >
                                     Logout
                                 </button>
