@@ -96,9 +96,8 @@ export const Form = () => {
                     <p className="text-red-500 text-xs italic mt-2">{errors.password?.message}</p>
                 </div>
 
-                <button type="submit" className=" w-full bg-black text-white py-3 px-6 hover:bg-indigo-500 rounded focus:outline-none text-lg">{isLogin ? 'Sign In' : 'Sign Up'}</button>
-                <button type="button" className=" w-full text-black hover:underline text-sm" onClick={toggleFormType}>{isLogin ? "Don't have an account? Sign up here!" : 'Already have an account? Login here!'}</button>
-
+                <button type="submit" className="w-full bg-black text-white py-3 px-6 hover:bg-indigo-500 rounded focus:outline-none text-lg mb-1">{isLogin ? 'Sign In' : 'Sign Up'}</button>
+                <button type="button" className="w-full text-black hover:underline text-sm" onClick={toggleFormType}>{isLogin ? "Don't have an account? Sign up here!" : 'Already have an account? Login here!'}</button>
             </form>
         </div>
     );

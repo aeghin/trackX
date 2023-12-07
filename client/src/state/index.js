@@ -5,6 +5,7 @@ const initialState = {
     token: null,
     projects: [],
     issues: {},
+    isLoading: true,
 };
 
 export const globalSlice = createSlice({
@@ -26,7 +27,7 @@ export const globalSlice = createSlice({
         },
         setIssues: (state, action) => {
             const { projectId, issues } = action.payload;
-            
+
             state.issues[projectId] = issues;
         },
         addProject: (state, action) => {
@@ -68,9 +69,12 @@ export const globalSlice = createSlice({
                 state.projects[projectIndex].title = newTitle;
             };
         },
+        isLoading: (state, action) => {
+            state.isLoading = action.payload
+        },
     },
 });
 
-export const { setLogin, setLogout, setIssues, addIssue, deleteIssue, setProjects, deleteProject, addProject, updateIssue, updateProject } = globalSlice.actions;
+export const { isLoading, setLogin, setLogout, setIssues, addIssue, deleteIssue, setProjects, deleteProject, addProject, updateIssue, updateProject } = globalSlice.actions;
 
 export default globalSlice.reducer;
