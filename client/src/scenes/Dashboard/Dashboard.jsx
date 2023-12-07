@@ -6,6 +6,7 @@ import { ProjectCard } from "components/ProjectCard.jsx";
 import { Modal } from "components/Modal.jsx";
 import { FaRegFolder } from 'react-icons/fa';
 import { isLoading } from "state";
+import BarLoader from "react-spinners/BarLoader";
 
 // import { FaArrowRight, FaArrowLeft, FaProjectDiagram, FaCog } from 'react-icons/fa';
 
@@ -64,7 +65,7 @@ const Dashboard = () => {
 
         <div className="w-full p-8 bg-gray-100">
           {loading ? (
-            <h1>loading....</h1>
+            <BarLoader />
           ) : (
             <>
               {hasProjects ? (
