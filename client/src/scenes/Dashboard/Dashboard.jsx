@@ -10,7 +10,7 @@ import { isLoading } from "state";
 // import { FaArrowRight, FaArrowLeft, FaProjectDiagram, FaCog } from 'react-icons/fa';
 
 
-export const Dashboard = () => {
+const Dashboard = () => {
 
   const dispatch = useDispatch();
   const projects = useSelector((state) => state.projects);
@@ -99,3 +99,5 @@ export const Dashboard = () => {
     </>
   )
 };
+
+export default Dashboard;
