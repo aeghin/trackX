@@ -103,7 +103,7 @@ export const Issues = () => {
               </div>
             </> : <>
               <div className="flex flex-col items-center pb-32 justify-center h-screen">
-                <div className="rounded-lg border p-12 bg-slate-200 text-center w-1/2">
+                <div className="rounded-lg border p-12 bg-slate-200 text-center w-1/2 mb-32">
                   <p className="text-4xl mb-4">First time? Let's fix that.</p>
                   <button
                     onClick={() => setModalOpen(true)}

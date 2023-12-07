@@ -65,17 +65,19 @@ const Dashboard = () => {
 
         <div className="w-full p-8 bg-gray-100">
           {loading ? (
-            <BarLoader />
+            <BarLoader width={125} />
           ) : (
             <>
               {hasProjects ? (
                 <div className="flex flex-col items-center pb-32 justify-center h-screen">
-                  <p className="text-4xl mb-4">Start a project</p>
-                  <button
-                    onClick={() => setModalOpen(true)}
-                    className="bg-gray-600 text-white font-semibold py-3 px-8 text-lg rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
-                    + Create Project
-                  </button>
+                  <div className="rounded-lg border p-12 bg-slate-200 text-center w-1/2 mb-32">
+                    <p className="text-4xl mb-4">Start a project</p>
+                    <button
+                      onClick={() => setModalOpen(true)}
+                      className="bg-gray-600 text-white font-semibold py-3 px-8 text-lg rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+                      + Create Project
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <>
