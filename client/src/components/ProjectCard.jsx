@@ -40,12 +40,12 @@ export const ProjectCard = ({ title, projectId }) => {
                     <h3 className="text-xl font-semibold">{title}</h3>
                 </Link>
                 <button onClick={() => setIsModal(true)} className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-green-400 pr-2">
-                    <FaRegEdit />
+                    <FaRegEdit className='w-5 h-5'/>
                 </button>
                 <button onClick={() => setConfirmDelete(true)}
                     className="transition duration-300 ease-in-out transform hover:scale-110 hover:text-red-500"
                 >
-                    <FaTrashAlt />
+                    <FaTrashAlt size="1.2rem"/>
                 </button>
             </div>
             {confirmDelete && <ConfirmModal handleDelete={handleDelete} onClose={() => setConfirmDelete(false)} />}

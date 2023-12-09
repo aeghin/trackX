@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setIssues } from "state";
+import { setIssues, isLoading } from "state";
 import { IssuesCard } from "./IssuesCard";
 import { IssueModal } from "./IssueModal";
 import { FaArrowLeft } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { BsFileEarmarkText } from "react-icons/bs";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { GiTimeTrap } from "react-icons/gi";
 import { BsCollection } from "react-icons/bs";
+import BarLoader from "react-spinners/BarLoader";
 
 
 export const Issues = () => {
@@ -22,17 +23,30 @@ export const Issues = () => {
   const navigate = useNavigate();
 
 
+  const loading = useSelector(state => state.isLoading);
+
   const getIssues = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}projects/${projectId}/issues`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` }
-      }
-    )
 
-    const data = await response.json();
+    try {
 
-    dispatch(setIssues({ projectId, issues: data }))
+      dispatch(isLoading(true));
+
+      const response = await fetch(`${process.env.REACT_APP_API_URL}projects/${projectId}/issues`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      )
+
+      const data = await response.json();
+
+      dispatch(setIssues({ projectId, issues: data }));
+
+    } catch (error) {
+      console.error("Error fetching projects:", error.message);
+    } finally {
+      dispatch(isLoading(false));
+    };
   };
 
   useEffect(() => {
@@ -53,7 +67,9 @@ export const Issues = () => {
     <>
       <div className="min-h-screen flex">
         <div className="w-full p-8 bg-gray-100">
-          {hasIssues ?
+          {loading ? (
+            <BarLoader width={125} />
+          ) : (hasIssues ?
             <>
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center">
@@ -113,7 +129,7 @@ export const Issues = () => {
                 </div>
               </div>
             </>
-          }
+          )}
         </div>
       </div>
       {isModalOpen && <IssueModal projectId={projectId} onClose={() => setModalOpen(false)} />}
