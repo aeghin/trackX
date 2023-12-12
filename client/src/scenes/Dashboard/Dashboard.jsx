@@ -82,10 +82,16 @@ const Dashboard = () => {
               ) : (
                 <>
                   <div className="flex justify-between items-center mb-4">
+
                     <div className="flex items-center text-xl py-2 px-6 rounded-lg bg-gray-300 font-semibold">
                       <h2>PROJECTS</h2>
                       <FaRegFolder className="ml-2" />
                     </div>
+                    <button
+                      onClick={() => setModalOpen(true)}
+                      className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
+                      + Create Project
+                    </button>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {projects.map(({ title, _id }) => (
