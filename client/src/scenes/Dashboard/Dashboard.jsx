@@ -82,7 +82,6 @@ const Dashboard = () => {
               ) : (
                 <>
                   <div className="flex justify-between items-center mb-4">
-
                     <div className="flex items-center text-xl py-2 px-6 rounded-lg bg-gray-300 font-semibold">
                       <h2>PROJECTS</h2>
                       <FaRegFolder className="ml-2" />
