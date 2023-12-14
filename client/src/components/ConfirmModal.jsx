@@ -10,7 +10,7 @@ export const ConfirmModal = ({ handleDelete, onClose }) => {
                     <AiOutlineCloseCircle className="text-xl" />
                 </button>
                 <p className="text-red-500 text-2xl mb-2">WARNING</p>
-                <p className="text-xl mb-4">Deleting the project will also remove its issues. Are you sure?</p>
+                <p className="text-xl mb-4">Deleting the project will also remove its issues. Are you sure? This action cannot be undone.</p>
                 <div className="flex">
 
                     <button

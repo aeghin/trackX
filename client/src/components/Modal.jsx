@@ -43,7 +43,7 @@ export const Modal = ({ onClose }) => {
                     <AiOutlineCloseCircle className="text-3xl" />
                 </button>
                 <div className="flex items-center justify-center mb-4 mt-8">
-                    <h2 className="text-3xl">Create a New Project</h2>
+                    <h2 className="text-3xl">New Project</h2>
                     <GoProjectRoadmap className="ml-2 text-2xl mt-1" />
                 </div>
                 <div className="flex justify-center">
@@ -58,10 +58,10 @@ export const Modal = ({ onClose }) => {
                 <div className="flex justify-center mt-4">
                     <button
                         onClick={handleSubmit}
-                        className="bg-gray-500 text-white text-xl p-4 w-1/3 hover:bg-indigo-500 rounded flex justify-center items-center"
+                        className="bg-gray-500 text-white text-xl p-3 w-1/4 hover:bg-indigo-500 rounded flex justify-center items-center"
                     >
-                        <span>Create</span>
-                        <AiFillEdit className="ml-1" />
+                        <span>ADD</span>
+                        <AiFillEdit className="ml-1 w-5 h-5" />
                     </button>
                 </div>
             </div>
