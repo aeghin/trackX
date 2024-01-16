@@ -12,7 +12,6 @@ export const ConfirmModal = ({ handleDelete, onClose }) => {
                 <p className="text-red-500 text-2xl mb-2">WARNING</p>
                 <p className="text-xl mb-4">Deleting the project will also remove its issues. Are you sure? This action cannot be undone.</p>
                 <div className="flex">
-
                     <button
                         onClick={handleDelete}
                         className="bg-red-500 text-white p-2 hover:bg-red-700 rounded mr-2"
